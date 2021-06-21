@@ -1,0 +1,53 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content fullscreen scrollY="false">
+    <div class="background-pic" style="background: url('../../assets/images/sfondo-login.jpg');">
+      <div class="background-filter">
+        <div class="shape"><img class="img-login" src="./assets/images/shape.svg" /></div>
+        <ion-card>
+          <ion-card-header>
+           <img src="assets/images/logo_bg.png">
+          </ion-card-header>
+          <ion-card-content mode="ios">
+            <form [formGroup]="validationFormUser" (ngSubmit)="LoginUser(validationFormUser.value)">
+              <div>
+                <ng-container *ngFor="let validation of validationUserMessage.auth">
+                  <div class="error_message" *ngIf="flagAuth">
+                     {{validation.message}}
+                  </div>
+                </ng-container>
+                <ng-container *ngFor="let validation of validationUserMessage.password">
+                     <div class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
+                        {{validation.message}}
+                     </div>
+                 </ng-container>
+
+                <ng-container *ngFor="let validation of validationUserMessage.email">
+                  <div class="error_message" *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)">
+                     {{validation.message}}
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item>
+                <ion-input type="text" name="email" formControlName="email" placeholder="Indirizzo email"></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="password" name="password"  formControlName="password" placeholder="Password"></ion-input>
+              </ion-item>
+  
+              <div class="bottom-section" style="margin-top: 2em;">
+                  <ion-button type="submit" [disabled]="!validationFormUser.valid">Accedi</ion-button>
+                  <span>Non sei ancora registrato? <a href="http://localhost:8100/signup"><b>Clicca quì</b> </a></span>
+              </div>
+            </form>
+            
+          </ion-card-content>
+        </ion-card>
+      </div>
+   </div>      
+
+</ion-content>
+

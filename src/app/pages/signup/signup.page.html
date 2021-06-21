@@ -1,0 +1,50 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content scrollY="false">
+
+  <div class="background-pic" style="background: url('../../assets/images/sfondo-login.jpg');">
+    <div class="background-filter">
+      <div class="shape"><img class="img-login" src="./assets/images/shape.svg" /></div>
+      <ion-card>
+        <ion-card-header>
+          <img src="assets/images/logo_bg.png">
+        </ion-card-header>
+        <form [formGroup]="ValidationFormUSer" (ngSubmit)="registerUser(ValidationFormUSer.value)">
+          <ion-card-content mode="ios">
+            
+            <ng-container *ngFor="let validation of validationMessages.email">
+
+              <div class="error_message" *ngIf="ValidationFormUSer.get('email').hasError(validation.type) && (ValidationFormUSer.get('email').dirty || ValidationFormUSer.get('email').touched)">
+                  {{validation.message}}
+              </div>
+ 
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.password">
+
+              <div class="error_message" *ngIf="ValidationFormUSer.get('password').hasError(validation.type) && (ValidationFormUSer.get('password').dirty || ValidationFormUSer.get('password').touched)">
+                  {{validation.message}}
+              </div>
+ 
+            </ng-container>
+
+            <ion-item>
+              <ion-input name="email" type="text" formControlName="email" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item >
+              <ion-input name="password" type="password" formControlName="password" placeholder="Password"></ion-input>
+            </ion-item>
+  
+            <div class="bottom-section" style="margin-top: 2em;">
+              <ion-button type="submit" [disabled]="!ValidationFormUSer.valid">Registrati</ion-button>
+              <span>Possiedi già un account? <a href="http://localhost:8100/login"><b>Accedi quì</b></a></span>
+            </div>
+          </ion-card-content>
+        </form>
+         
+       </ion-card>
+     </div>
+  </div>
+
+</ion-content>

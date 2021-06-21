@@ -1,0 +1,7 @@
+{
+  "name": "TfpfRecipes",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
