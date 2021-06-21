@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Ricetta } from 'src/app/model/ricetta.model';
 
 @Component({
   selector: 'app-home',
@@ -7,20 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  nomeRicetta : any;
 
-  constructor( private route: Router) {}
+  constructor( private database : AngularFirestore) {
+    var ricetta : Ricetta;
 
-/*
-  homePage(){
-    this.route.navigate(['home'])
+    this.nomeRicetta = new Array();
+    
+    this.database.collection('ricetta').valueChanges().subscribe( result => {
+      for( let row of result ){
+        ricetta = new Ricetta( "1", row['nome'] );
+        this.nomeRicetta.push( ricetta.getNome() );
+      }
+    });
+
   }
-  loginPage(){
-    this.route.navigate(['login'])
-  }
-  ricettaPage(){
-    this.route.navigate(['ricetta'])
-  }
-*/
+
 
   slidesOptions = {
     slidesPerView: 2.5

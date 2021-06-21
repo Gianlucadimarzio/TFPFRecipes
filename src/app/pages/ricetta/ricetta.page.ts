@@ -22,7 +22,7 @@ export class RicettaPage implements OnInit {
 
     this.database.collection('ricetta').valueChanges().subscribe( result => {
       for( let row of result ){
-        ricetta = new Ricetta( "1", row['nome'] )
+        ricetta = new Ricetta( "1", row['nome'] );
         if( ricetta.getId() == "1"){
           this.ricettaNome = ricetta.getNome();
           break;

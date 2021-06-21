@@ -32,12 +32,11 @@
 <ion-content style="width: 100%;" scroll-y="true">
 
 
-    <h4 class="titolo-categoria"><b>Ricette più valutate</b></h4>
-
     <div class="slides ion-margin-bottom">
       <ion-slides mode="md" [options]="slidesOptions">
-        <ion-slide>
 
+
+        <ion-slide *ngFor="let nome of nomeRicetta;">
             <ion-card class="bg-load">
               <ion-card-header>
                 <div class="main">
@@ -45,89 +44,38 @@
                 </div>
               </ion-card-header>
               <ion-card-content >
-                <h3 class="ion-text-center text-white hidden-title">Cheescake</h3>
-                <small class="ion-text-left text-white"><b>DOLCI</b></small>
+                <h3 class="ion-text-center text-white hidden-title">{{nome}}</h3>
+                <small class="ion-text-left text-white"><b>PROVA</b></small>
               </ion-card-content>
             </ion-card>
+        </ion-slide>
 
-        </ion-slide>
-        <ion-slide>
-          <ion-card class="bg-load">
-            <ion-card-header>
-              <div class="main">
-                <img src="assets/images/focaccia.png">
-              </div>
-            </ion-card-header>
-            <ion-card-content >
-              <h3 class="ion-text-center text-white hidden-title">Focaccia</h3>
-              <small class="ion-text-left text-white"><b>PIZZA</b></small>
-            </ion-card-content>
-          </ion-card>
-        </ion-slide>
-        <ion-slide>
-          <ion-card class="bg-load">
-            <ion-card-header>
-              <div class="main">
-                <img src="assets/images/cheescake.jpg">
-              </div>
-            </ion-card-header>
-            <ion-card-content >
-              <h3 class="ion-text-center text-white hidden-title">Cheescake</h3>
-              <small class="ion-text-left text-white"><b>DOLCI</b></small>
-            </ion-card-content>
-          </ion-card>
-        </ion-slide>
 
       </ion-slides>
     </div>
 
-
-
-    <h4 class="titolo-categoria"><b>Ultime ricette inserite</b></h4>
 
     <div class="slides ion-margin-bottom">
       <ion-slides mode="md" [options]="slidesOptions">
-        <ion-slide>
-          <ion-card class="bg-load">
-            <ion-card-header>
-              <div class="main">
-                <img src="assets/images/cheescake.jpg">
-              </div>
-            </ion-card-header>
-            <ion-card-content >
-              <h3 class="ion-text-center text-white hidden-title">Cheescake</h3>
-              <small class="ion-text-left text-white"><b>DOLCI</b></small>
-            </ion-card-content>
-          </ion-card>
+
+
+        <ion-slide *ngFor="let nome of nomeRicetta;">
+            <ion-card class="bg-load">
+              <ion-card-header>
+                <div class="main">
+                  <img src="assets/images/cheescake.jpg">
+                </div>
+              </ion-card-header>
+              <ion-card-content >
+                <h3 class="ion-text-center text-white hidden-title">{{nome}}</h3>
+                <small class="ion-text-left text-white"><b>PROVA</b></small>
+              </ion-card-content>
+            </ion-card>
         </ion-slide>
-        <ion-slide>
-          <ion-card class="bg-load">
-            <ion-card-header>
-              <div class="main">
-                <img src="assets/images/focaccia.png">
-              </div>
-            </ion-card-header>
-            <ion-card-content >
-              <h3 class="ion-text-center text-white hidden-title">Focaccia</h3>
-              <small class="ion-text-left text-white hidden title"><b>PIZZA</b></small>
-            </ion-card-content>
-          </ion-card>
-        </ion-slide>
-        <ion-slide>
-          <ion-card class="bg-load">
-            <ion-card-header>
-              <div class="main">
-                <img src="assets/images/cheescake.jpg">
-              </div>
-            </ion-card-header>
-            <ion-card-content >
-              <h3 class="ion-text-center text-white hidden-title">Cheescake</h3>
-              <small class="ion-text-left text-white"><b>DOLCI</b></small>
-            </ion-card-content>
-          </ion-card>
-        </ion-slide>
+
 
       </ion-slides>
     </div>
+
 
 </ion-content>
