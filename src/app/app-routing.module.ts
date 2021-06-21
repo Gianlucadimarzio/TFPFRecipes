@@ -30,10 +30,10 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]  RIATTIVARE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   },
   {
-    path: 'ricetta',
+    path: 'ricetta/:xyz',
     loadChildren: () => import('./pages/ricetta/ricetta.module').then( m => m.RicettaPageModule)
   },
 

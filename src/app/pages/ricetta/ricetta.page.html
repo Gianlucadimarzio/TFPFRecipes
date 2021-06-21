@@ -1,33 +1,67 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>ricetta</ion-title>
+    <ion-row style="margin-top: 10px;">
+      <ion-col size="3">
+        <ion-thumbnail class="ion-margin-start">
+          <img src="assets/images/logo.png">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col size="9">
+        <ion-searchbar mode="ios"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
-  <ion-item lines="none">
-    <ion-icon name="nome"></ion-icon>
-    <ion-label>{{this.ricettaNome}}</ion-label>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-icon name="descrizione"></ion-icon>
-    <ion-label>{{this.ricettaDescrizione}}</ion-label>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-icon name="immagine"></ion-icon>
-    <ion-label>{{this.ricettaImmagine}}</ion-label>
-  </ion-item>
-  
-  <ion-item lines="none">
-    <ion-icon name="tempo"></ion-icon>
-    <ion-label>{{this.ricettaTempo}}</ion-label>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-icon name="difficolta"></ion-icon>
-    <ion-label>{{this.ricettaDifficolta}}</ion-label>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-icon name="procedimento"></ion-icon>
-    <ion-label>{{this.ricettaProcedimento}}</ion-label>
-  </ion-item>
+<ion-content fullscreen mode="md" scrollY="true">
+  <ion-card>
+    <ion-card-header>
+      <div class="main" style="background-image: url({{immagineRicetta}});">
+        <ion-button style="margin-left: 76%;"><ion-icon name="heart"></ion-icon></ion-button>
+      </div>
+      <ion-card-title class="hidden-title">{{nomeRicetta}}</ion-card-title>
+      <small class="hidden-title" style="text-transform: uppercase;"><b>{{categoriaRicetta}}</b></small>
+      <ion-card-subtitle><ion-icon name="hourglass-outline"></ion-icon>Durata: {{tempoRicetta}} minuti</ion-card-subtitle>
+      <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon>Difficolta' : {{difficoltaRicetta}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <ion-card-title>Descrizione</ion-card-title>
+        <p>{{descrizioneRicetta}}</p>
+      </div>
+      <div>
+        <ion-card-title>Ingredienti</ion-card-title>
+        <ul>
+          <li>Pomodoro</li>
+          <li>Pomodoro</li>
+          <li>Pomodoro</li>
+          <li>Pomodoro</li>
+        </ul>
+      <ion-button expand="block">Aggiungi al carrello</ion-button>
+      </div>  
+        
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" (click)="routerHome()" >
+      <ion-icon name="home"></ion-icon>
+    </ion-tab-button>
+  
+    <ion-tab-button tab="recipes" (click)="routerRicerca()">
+      <ion-icon name="restaurant-outline"></ion-icon>
+    </ion-tab-button>
+  
+    <ion-tab-button tab="cart" (click)="routerCarrello()">
+      <ion-icon name="receipt-outline"></ion-icon>
+    </ion-tab-button>
+  
+    <ion-tab-button tab="profile" (click)="routerProfilo()">
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>

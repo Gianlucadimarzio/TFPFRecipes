@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TabsPage,
     children:[
       {path:"home", loadChildren:() => import('src/app/pages/home/home.module').then(res => res.HomePageModule)},
-      {path:"recipes", loadChildren:() => import('src/app/pages/ricetta/ricetta.module').then(res => res.RicettaPageModule)},
+      {path:"recipes", loadChildren:() => import('src/app/pages/ricerca-ricette/ricerca-ricette.module').then(res => res.RicercaRicettePageModule)},
       {path:"profile", loadChildren:() => import('src/app/pages/profile/profile.module').then(res => res.ProfilePageModule)},
 
     ]

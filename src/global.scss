@@ -11,13 +11,15 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 
+
+.bg-load {
+  --background: linear-gradient( var(--ion-color-gradient-background-start), var(--ion-color-gradient-background-end)) !important;
+}
+
 ion-item {
   --ion-item-background: transparent;
 }
 
-.bg-load {
-  --background: linear-gradient( var(--ion-color-gradient-background-start), var(--ion-color-gradient-background-end));
-}
 .logo-center{
   text-align-last: center !important;
 }

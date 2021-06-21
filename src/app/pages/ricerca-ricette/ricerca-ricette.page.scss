@@ -3,3 +3,13 @@
     color: #b00011;
     text-decoration: none;
 }
+
+ion-content {
+    background-color: whitesmoke;
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
