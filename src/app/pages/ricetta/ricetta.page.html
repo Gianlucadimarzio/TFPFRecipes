@@ -23,8 +23,8 @@
       </div>
       <ion-card-title class="hidden-title">{{nomeRicetta}}</ion-card-title>
       <small class="hidden-title" style="text-transform: uppercase;"><b>{{categoriaRicetta}}</b></small>
-      <ion-card-subtitle><ion-icon name="hourglass-outline"></ion-icon>Durata: {{tempoRicetta}} minuti</ion-card-subtitle>
-      <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon>Difficolta'†: {{difficoltaRicetta}}</ion-card-subtitle>
+      <ion-card-subtitle><ion-icon name="hourglass-outline"></ion-icon> Durata: {{tempoRicetta}} minuti</ion-card-subtitle>
+      <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon> Difficolt√†: {{difficoltaRicetta}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <div>
@@ -33,15 +33,16 @@
       </div>
       <div>
         <ion-card-title>Ingredienti</ion-card-title>
-        <ul>
-          <li>Pomodoro</li>
-          <li>Pomodoro</li>
-          <li>Pomodoro</li>
-          <li>Pomodoro</li>
-        </ul>
-      <ion-button expand="block">Aggiungi al carrello</ion-button>
-      </div>  
-        
+
+        <ion-list *ngFor="let ingrediente of ingredienti;">
+           <ion-item>
+             {{ingrediente.nome}} : {{ingrediente.dose}}
+           </ion-item>
+        </ion-list>
+
+      <ion-button expand="block" (click)="addCart()">Aggiungi al carrello</ion-button>
+      </div>
+
     </ion-card-content>
   </ion-card>
 </ion-content>
@@ -52,15 +53,15 @@
     <ion-tab-button tab="home" (click)="routerHome()" >
       <ion-icon name="home"></ion-icon>
     </ion-tab-button>
-  
+
     <ion-tab-button tab="recipes" (click)="routerRicerca()">
       <ion-icon name="restaurant-outline"></ion-icon>
     </ion-tab-button>
-  
+
     <ion-tab-button tab="cart" (click)="routerCarrello()">
       <ion-icon name="receipt-outline"></ion-icon>
     </ion-tab-button>
-  
+
     <ion-tab-button tab="profile" (click)="routerProfilo()">
       <ion-icon name="person-outline"></ion-icon>
     </ion-tab-button>
