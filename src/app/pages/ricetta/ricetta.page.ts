@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { RicettaService } from 'src/app/services/ricetta.service';
 import { Ricetta } from 'src/app/model/ricetta.model';
 
 @Component({
@@ -19,8 +18,19 @@ export class RicettaPage implements OnInit {
 
   constructor(private database : AngularFirestore) {
 
-    var service: RicettaService = new RicettaService( database );
-    console.log( service.getRicette() );
+    var ricetta : Ricetta;
+
+    this.database.collection('ricetta').valueChanges().subscribe( result => {
+      for( let row of result ){
+        ricetta = new Ricetta( "1", row['nome'] )
+        if( ricetta.getId() == "1"){
+          this.ricettaNome = ricetta.getNome();
+          break;
+        }
+      }
+    });
+
+
   /*
     SELECT * FROM RICETTA
     this.database.collection('ricetta').valueChanges().subscribe( result => {
@@ -28,12 +38,6 @@ export class RicettaPage implements OnInit {
     });
   */
 
-  /*
-    SELECT * FROM RICETTA WHERE ID = gwuW7I3chGPgMZmoE66h
-    this.database.doc('ricetta/gwuW7I3chGPgMZmoE66h').valueChanges().subscribe( result => {
-      this.ricettaNome = result['nome'];
-    });
-  */
 
   }
 

@@ -9,16 +9,18 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   constructor( private route: Router) {}
-  
+
+/*
   homePage(){
-    this.route.navigate(['home']) 
+    this.route.navigate(['home'])
   }
   loginPage(){
-    this.route.navigate(['login']) 
+    this.route.navigate(['login'])
   }
-  ricettePage(){
-    this.route.navigate(['ricerca-ricette']) 
+  ricettaPage(){
+    this.route.navigate(['ricetta'])
   }
+*/
 
   slidesOptions = {
     slidesPerView: 2.5
