@@ -14,3 +14,9 @@ ion-content {
       display: none;
     }
   }
+
+  ion-item{
+    .item-native{
+      padding-left: 0 !important;
+    }
+  }

@@ -19,7 +19,7 @@
   <ion-card>
     <ion-card-header>
       <div class="main" style="background-image: url({{immagineRicetta}});">
-        <ion-button style="margin-left: 76%;"><ion-icon name="heart"></ion-icon></ion-button>
+        <ion-button style="margin-left: 76%;" (click)="addPref()"><ion-icon name="heart"></ion-icon></ion-button>
       </div>
       <ion-card-title class="hidden-title">{{nomeRicetta}}</ion-card-title>
       <small class="hidden-title" style="text-transform: uppercase;"><b>{{categoriaRicetta}}</b></small>
@@ -34,13 +34,11 @@
       <div>
         <ion-card-title>Ingredienti</ion-card-title>
 
-        <ion-list *ngFor="let ingrediente of ingredienti;">
-           <ion-item>
-             {{ingrediente.nome}} : {{ingrediente.dose}}
+           <ion-item *ngFor="let ingrediente of ingredienti;">
+             <p>• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
            </ion-item>
-        </ion-list>
 
-      <ion-button expand="block" (click)="addCart()">Aggiungi al carrello</ion-button>
+      <ion-button style="font-size: 12px;" expand="block" (click)="addCart()">Aggiungi alla lista della spesa</ion-button>
       </div>
 
     </ion-card-content>

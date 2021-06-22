@@ -48,8 +48,23 @@
               </ion-card-content>
             </ion-card>
         </ion-slide>
-
-
+      </ion-slides>
+    </div>
+    <div class="slides ion-margin-bottom">
+      <ion-slides mode="md" [options]="slidesOptions">
+        <ion-slide *ngFor="let ricetta of ricette;">
+            <ion-card class="bg-load">
+              <ion-card-header>
+                <div class="main">
+                  <a (click)="btnClicked(ricetta.id)"><img src="{{ricetta.immagine}}"></a>
+                </div>
+              </ion-card-header>
+              <ion-card-content >
+                <h3 class="ion-text-center text-white hidden-title">{{ricetta.nome}}</h3>
+                <small style="text-transform: uppercase; font-size: 9px;" class="ion-text-left text-white"><b>{{ricetta.categoria}}</b></small>
+              </ion-card-content>
+            </ion-card>
+        </ion-slide>
       </ion-slides>
     </div>
 

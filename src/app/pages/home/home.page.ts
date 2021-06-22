@@ -41,6 +41,7 @@ export class HomePage {
       }
     });
   }
+  
 
   slidesOptions = {
     slidesPerView: 2.5

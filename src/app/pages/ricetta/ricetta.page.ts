@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Ricetta } from 'src/app/model/ricetta.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastController } from '@ionic/angular';
+import { RicettaService } from 'src/app/services/ricetta.service';
+
 
 
 @Component({
@@ -23,7 +26,7 @@ export class RicettaPage implements OnInit {
   ingredienti: any;
 
 
-  constructor( private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore ) {
+  constructor( private ricettaService: RicettaService, private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore, public toastController: ToastController ) {
     this.ingredienti = new Array();
 
     var ricetta : Ricetta;
@@ -47,8 +50,6 @@ export class RicettaPage implements OnInit {
               }
             }
           });
-
-
 
           this.database.collection('categoria').valueChanges().subscribe( resultCategoria => {
             this.nomeRicetta = ricetta.getNome();
@@ -75,6 +76,10 @@ export class RicettaPage implements OnInit {
 
 
   ngOnInit() {
+    this.ricettaService.getRicette().subscribe( res => {
+      console.log('le mie ricette', res);
+      
+    });
   }
 
   routerHome(){
@@ -89,11 +94,52 @@ export class RicettaPage implements OnInit {
   routerProfilo(){
     this.router.navigate(['tabs/tabs/profile']);
   }
-  addCart(){
-    alert("Ingredienti aggiunti al carrello");
+
+
+  async addPref() {
+    let token:number = Math.random();
+    this.database.collection('ricettario').doc(`${token}`).set({
+      utente: "1",
+      ricetta: this.id,
+      id: token
+    });
+    this.database.collection('ricettario').valueChanges().subscribe( result => {
+      for( let row of result ){
+        var c: number = 0;
+        for( let cRow of result ){
+          if( cRow['utente'] == row['utente'] && cRow['ricetta'] == row['ricetta']  ){
+            c++;
+          }
+          if(c > 1){
+            this.database.collection('ricettario').doc(`${row['id']}`).delete();
+            break;
+            
+          }
+        }
+      }
+    });
+
+
+    const toast = await this.toastController.create({
+    message: 'Operazione eseguita con successo!',
+      duration: 500,
+      position: "bottom",
+      mode: "md",
+      cssClass: "toast"
+    });
+    toast.present();
   }
-
-
+  
+  async addCart() {   
+    const toast = await this.toastController.create({
+      message: 'Ingredienti aggiunti alla lista della spesa!',
+      duration: 500,
+      position: "bottom",
+      mode: "md",
+      cssClass: "toast"
+    });
+    toast.present();
+  }
 
 
 }

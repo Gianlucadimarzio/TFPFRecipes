@@ -10,7 +10,17 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+body {
+  font-family: 'Lato' !important;
+}
+.toast{
+  border-bottom: inset;
+  text-align: center;
+}
 
+.toast-wrapper{
+  margin-bottom: 20px !important;
+}
 
 .bg-load {
   --background: linear-gradient( var(--ion-color-gradient-background-start), var(--ion-color-gradient-background-end)) !important;
@@ -132,7 +142,6 @@ ion-slide > img {
   color: var(--ion-color-dark);
 }
 
-// menu //
 // Menu user profile
 ion-toolbar.user-profile {
 
