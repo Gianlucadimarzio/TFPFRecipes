@@ -17,7 +17,7 @@ export class Ricetta {
         this.immagine = im;
         this.procedimento = p;
         this.tempo = t;
-        this.categoria = "Non Specificata"
+        this.categoria = "Non Specificata";
     }
     getId(){
         return this.id;

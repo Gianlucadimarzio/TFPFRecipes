@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
 
   LoginUser(value){
       this.authservice.loginFireauth(value).then( resp =>{
-        console.log(resp);
+        //console.log(resp);
         this.route.navigate(['tabs']);
         this.authservice.setUser({
 
@@ -64,7 +64,8 @@ export class LoginPage implements OnInit {
               this.nav.navigateForward(['tabs']);
             } else {
               this.firestore.doc(`utente/${this.authservice.getUserUid()}`).set({
-                email: resp.user.email
+                email: resp.user.email,
+                id: this.authservice.getUserUid()
               });
             }
           })

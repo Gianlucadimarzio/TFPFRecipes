@@ -1,74 +1,56 @@
+
+
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-row>
-      <ion-col size="3">
+<ion-toolbar>
         <ion-thumbnail class="ion-margin-start">
-          <img src="assets/images/logo.png">
+            <img src="assets/images/logo.png">
         </ion-thumbnail>
-      </ion-col>
-      <ion-col size="9">
-        <ion-searchbar mode="ios"></ion-searchbar>
-      </ion-col>
-    </ion-row>
-
-  </ion-toolbar>
-
-</ion-header>
-<ion-slides  style="width: 100%; height: 200px;" mode="ios">
-  <ion-slide >
-    <img src="./assets/images/cheescake.jpg"/>
-  </ion-slide>
-
-  <ion-slide>
-    <img src="./assets/images/focaccia.png"/>
-  </ion-slide>
-
-  <ion-slide>
-    <img src="./assets/images/pollo-fritto.jpg"/>
-  </ion-slide>
-
+</ion-toolbar>
+<ion-slides style="width: 100%; height: 200px;" mode="ios">
+        <ion-slide style="cursor:pointer;" *ngFor="let ricettaSlider of ricetteSlider" (click)="btnClicked(ricettaSlider.id)" class="bg-img" style="background-image: url({{ricettaSlider.immagine}});">
+        </ion-slide>
 </ion-slides>
+</ion-header>
+
 
 <ion-content style="width: 100%;" scroll-y="true">
 
     <div class="slides ion-margin-bottom">
-      <ion-slides mode="md" [options]="slidesOptions">
+    <ion-slides mode="md" [options]="slidesOptions">
 
 
         <ion-slide *ngFor="let ricetta of ricette;">
             <ion-card class="bg-load">
-              <ion-card-header>
+            <ion-card-header>
                 <div class="main">
-                  <a (click)="btnClicked(ricetta.id)"><img src="{{ricetta.immagine}}"></a>
+                <a (click)="btnClicked(ricetta.id)"><img src="{{ricetta.immagine}}"></a>
                 </div>
-              </ion-card-header>
-              <ion-card-content >
+            </ion-card-header>
+            <ion-card-content >
                 <h3 class="ion-text-center text-white hidden-title">{{ricetta.nome}}</h3>
                 <small style="text-transform: uppercase; font-size: 9px;" class="ion-text-left text-white"><b>{{ricetta.categoria}}</b></small>
-              </ion-card-content>
+            </ion-card-content>
             </ion-card>
         </ion-slide>
-      </ion-slides>
+    </ion-slides>
     </div>
     <div class="slides ion-margin-bottom">
-      <ion-slides mode="md" [options]="slidesOptions">
+    <ion-slides mode="md" [options]="slidesOptions">
         <ion-slide *ngFor="let ricetta of ricette;">
             <ion-card class="bg-load">
-              <ion-card-header>
+            <ion-card-header>
                 <div class="main">
-                  <a (click)="btnClicked(ricetta.id)"><img src="{{ricetta.immagine}}"></a>
+                <a (click)="btnClicked(ricetta.id)"><img src="{{ricetta.immagine}}"></a>
                 </div>
-              </ion-card-header>
-              <ion-card-content >
+            </ion-card-header>
+            <ion-card-content >
                 <h3 class="ion-text-center text-white hidden-title">{{ricetta.nome}}</h3>
                 <small style="text-transform: uppercase; font-size: 9px;" class="ion-text-left text-white"><b>{{ricetta.categoria}}</b></small>
-              </ion-card-content>
+            </ion-card-content>
             </ion-card>
         </ion-slide>
-      </ion-slides>
+    </ion-slides>
     </div>
 
 
 </ion-content>
-
-

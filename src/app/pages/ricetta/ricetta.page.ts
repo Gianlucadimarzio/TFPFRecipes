@@ -5,6 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
 import { RicettaService } from 'src/app/services/ricetta.service';
+import { Utente } from 'src/app/model/utente.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IngredienteService } from 'src/app/services/ingredienteService.service';
 
 
 
@@ -13,8 +18,9 @@ import { RicettaService } from 'src/app/services/ricetta.service';
   templateUrl: './ricetta.page.html',
   styleUrls: ['./ricetta.page.scss'],
 })
-export class RicettaPage implements OnInit {
+export class RicettaPage implements OnInit{
 
+  utente: Utente;
   id: any;
   nomeRicetta: any;
   descrizioneRicetta: any;
@@ -23,34 +29,27 @@ export class RicettaPage implements OnInit {
   categoriaRicetta: any;
   immagineRicetta: any;
 
-  ingredienti: any;
+  flagRicettario: boolean = false;
 
 
-  constructor( private ricettaService: RicettaService, private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore, public toastController: ToastController ) {
-    this.ingredienti = new Array();
+  ingredienti: Array<any>;
 
-    var ricetta : Ricetta;
-    this.id = activatedRoute.snapshot.paramMap.get('xyz');
+
+  constructor( private ingredienteService: IngredienteService , private authService: AuthService, private ricettaService: RicettaService, private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore, public toastController: ToastController ) {
+
+  }
+
+
+  ngOnInit() {
+    this.utente = new Utente( this.authService, this.database );
+    this.id = this.activatedRoute.snapshot.paramMap.get('xyz');
+    this.ingredienti = this.ingredienteService.listaIngredientiRicetta(this.id);
+
+    var ricetta: Ricetta;
     this.database.collection('ricetta').valueChanges().subscribe( resultRicetta => {
       for( let rowRicetta of resultRicetta ){
         ricetta = new Ricetta( rowRicetta['id'], rowRicetta['nome'],rowRicetta['descrizione'],rowRicetta['difficolta'],rowRicetta['immagine'],rowRicetta['procedimento'],rowRicetta['tempo'] );
         if( ricetta.getId() == this.id){
-
-          this.database.collection('dose').valueChanges().subscribe( resultDose => {
-            for( let rowDose of resultDose ){
-              if( rowDose['ricetta'] == ricetta.getId() ){
-                this.database.collection('ingrediente').valueChanges().subscribe( resultIngrediente => {
-                  for( let rowIngrediente of resultIngrediente ){
-                    if( rowIngrediente['id'] == rowDose['ingrediente'] ){
-                      this.ingredienti.push( { nome: rowIngrediente['nome'], dose:rowDose['quantita'] } );
-                      break;
-                    }
-                  }
-                });
-              }
-            }
-          });
-
           this.database.collection('categoria').valueChanges().subscribe( resultCategoria => {
             this.nomeRicetta = ricetta.getNome();
             this.descrizioneRicetta = ricetta.getDescrizione();
@@ -71,57 +70,43 @@ export class RicettaPage implements OnInit {
           break;
         }
       }
-    });
-  }
+    });    
 
-
-  ngOnInit() {
-    this.ricettaService.getRicette().subscribe( res => {
-      console.log('le mie ricette', res);
-      
+    this.database.collection('ricettario').valueChanges().subscribe( result => {
+      for( let row of result ){
+        if( row['utente'] == this.utente.getId() && row['ricetta'] == this.id ){
+          this.flagRicettario = true;
+        }
+      }
     });
+
   }
 
   routerHome(){
     this.router.navigate(['tabs/tabs/home']);
   }
   routerRicerca(){
-    this.router.navigate(['tabs/tabs/ricerca-ricette']);
+    this.router.navigate(['tabs/tabs/recipes']);
   }
   routerCarrello(){
-    this.router.navigate(['tabs/tabs/home']);
+    this.router.navigate(['tabs/tabs/cart']);
   }
   routerProfilo(){
     this.router.navigate(['tabs/tabs/profile']);
   }
 
-
+  
   async addPref() {
     let token:number = Math.random();
     this.database.collection('ricettario').doc(`${token}`).set({
-      utente: "1",
+      utente: this.utente.getId(),
       ricetta: this.id,
-      id: token
+      id: token,
+      valido: 1
     });
-    this.database.collection('ricettario').valueChanges().subscribe( result => {
-      for( let row of result ){
-        var c: number = 0;
-        for( let cRow of result ){
-          if( cRow['utente'] == row['utente'] && cRow['ricetta'] == row['ricetta']  ){
-            c++;
-          }
-          if(c > 1){
-            this.database.collection('ricettario').doc(`${row['id']}`).delete();
-            break;
-            
-          }
-        }
-      }
-    });
-
 
     const toast = await this.toastController.create({
-    message: 'Operazione eseguita con successo!',
+    message: 'Ricetta aggiunta al ricettario!',
       duration: 500,
       position: "bottom",
       mode: "md",
@@ -130,7 +115,37 @@ export class RicettaPage implements OnInit {
     toast.present();
   }
   
-  async addCart() {   
+  async addCart() {  
+    let token: number;
+    this.database.collection('dose').valueChanges().subscribe( resultDose => {
+      for( let rowDose of resultDose ){
+        if( rowDose['ricetta'] == this.id ){
+          token = Math.random();
+          this.database.collection('carrello').doc(`${token}`).set({
+            ingrediente: rowDose['ingrediente'],
+            utente: this.utente.getId(),
+            id: token
+          });
+        }
+      }
+    });
+    this.database.collection('carrello').valueChanges().subscribe( result => {
+      for( let row of result ){
+        var c: number = 0;
+       for( let cRow of result ){
+        if( cRow['utente'] == row['utente'] && cRow['ingrediente'] == row['ingrediente']  ){
+          c++;
+        }
+        if(c > 1){
+          this.database.collection('carrello').doc(`${cRow['id']}`).delete();
+          break;
+          
+        }
+       }
+      }
+    });
+ 
+
     const toast = await this.toastController.create({
       message: 'Ingredienti aggiunti alla lista della spesa!',
       duration: 500,
@@ -140,6 +155,5 @@ export class RicettaPage implements OnInit {
     });
     toast.present();
   }
-
 
 }

@@ -7,7 +7,7 @@
         </ion-thumbnail>
       </ion-col>
       <ion-col size="9">
-        <ion-searchbar mode="ios"></ion-searchbar>
+        <ion-searchbar></ion-searchbar>
       </ion-col>
     </ion-row>
 
@@ -15,11 +15,11 @@
 
 </ion-header>
 
-<ion-content fullscreen mode="md" scrollY="true">
+<ion-content fullscreen scrollY="true">
   <ion-card>
     <ion-card-header>
       <div class="main" style="background-image: url({{immagineRicetta}});">
-        <ion-button style="margin-left: 76%;" (click)="addPref()"><ion-icon name="heart"></ion-icon></ion-button>
+        <ion-button [disabled]="flagRicettario" style="margin-left: 76%;" (click)="addPref()"><ion-icon name="heart"></ion-icon></ion-button>
       </div>
       <ion-card-title class="hidden-title">{{nomeRicetta}}</ion-card-title>
       <small class="hidden-title" style="text-transform: uppercase;"><b>{{categoriaRicetta}}</b></small>
@@ -34,7 +34,7 @@
       <div>
         <ion-card-title>Ingredienti</ion-card-title>
 
-           <ion-item *ngFor="let ingrediente of ingredienti;">
+           <ion-item *ngFor="let ingrediente of ingredienti">
              <p>• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
            </ion-item>
 
@@ -44,9 +44,6 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home" (click)="routerHome()" >
       <ion-icon name="home"></ion-icon>
