@@ -15,49 +15,51 @@
 
 </ion-header>
 
-<ion-content fullscreen scrollY="true">
+<ion-content mode="md" fullscreen scrollY="true" *ngFor="let item of ricetta">
   <ion-card>
-    <ion-card-header>
-      <div class="main" style="background-image: url({{immagineRicetta}});">
-        <ion-button [disabled]="flagRicettario" style="margin-left: 76%;" (click)="addPref()"><ion-icon name="heart"></ion-icon></ion-button>
+    <ion-card-header *ngFor="let flag of flagRicettario">
+      <div class="main" style="background-image: url({{item.immagine}});">
+        <ion-button  [disabled]="flag.value" style="margin-left: 76%;" (click)="addPref()"><ion-icon name="heart"></ion-icon></ion-button>
       </div>
-      <ion-card-title class="hidden-title">{{nomeRicetta}}</ion-card-title>
-      <small class="hidden-title" style="text-transform: uppercase;"><b>{{categoriaRicetta}}</b></small>
-      <ion-card-subtitle><ion-icon name="hourglass-outline"></ion-icon> Durata: {{tempoRicetta}} minuti</ion-card-subtitle>
-      <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon> Difficoltà: {{difficoltaRicetta}}</ion-card-subtitle>
+      <ion-card-title class="hidden-title">{{item.nome}}</ion-card-title>
+      <small class="hidden-title" style="text-transform: uppercase;"><b>{{item.categoria}}</b></small>
+      <ion-card-subtitle><ion-icon name="hourglass-outline"></ion-icon> Durata: {{item.tempo}} minuti</ion-card-subtitle>
+      <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon> Difficoltà: {{item.difficolta}}</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content >
       <div>
         <ion-card-title>Descrizione</ion-card-title>
-        <p>{{descrizioneRicetta}}</p>
+        <p>{{item.descrizione}}</p>
       </div>
       <div>
         <ion-card-title>Ingredienti</ion-card-title>
-
-           <ion-item *ngFor="let ingrediente of ingredienti">
-             <p>• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
-           </ion-item>
-
-      <ion-button style="font-size: 12px;" expand="block" (click)="addCart()">Aggiungi alla lista della spesa</ion-button>
+        <ion-item *ngFor="let ingrediente of ingredienti">
+          <p class="hidden-title">• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
+          <ion-button class="addCart" slot="end" (click)="addCartSingle( ingrediente.id )" (click)= doRefresh($event) [disabled]="ingrediente.flag"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+        </ion-item>
+        <ion-button *ngFor="let flagAll of flagAllIngredienti" style="font-size: 12px;" expand="block" (click)="addCart()" (click)= doRefresh($event) [disabled]="flagAll.value">Aggiungi tutti gli ingredienti </ion-button>
       </div>
-
     </ion-card-content>
   </ion-card>
 </ion-content>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home" (click)="routerHome()" >
-      <ion-icon name="home"></ion-icon>
-    </ion-tab-button>
 
-    <ion-tab-button tab="recipes" (click)="routerRicerca()">
-      <ion-icon name="restaurant-outline"></ion-icon>
-    </ion-tab-button>
 
-    <ion-tab-button tab="cart" (click)="routerCarrello()">
-      <ion-icon name="receipt-outline"></ion-icon>
-    </ion-tab-button>
 
-    <ion-tab-button tab="profile" (click)="routerProfilo()">
-      <ion-icon name="person-outline"></ion-icon>
-    </ion-tab-button>
-  </ion-tab-bar>
+
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="home" (click)="routerHome()" >
+    <ion-icon name="home"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="recipes" (click)="routerRicerca()">
+    <ion-icon name="restaurant-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="cart" (click)="routerCarrello()">
+    <ion-icon name="receipt-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="profile" (click)="routerProfilo()">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-tab-button>
+</ion-tab-bar>

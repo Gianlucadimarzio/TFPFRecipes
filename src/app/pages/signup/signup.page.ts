@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
@@ -10,7 +12,10 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignupPage implements OnInit {  
+  
+  flagAuth = false;
+
   validationMessages = {
     email: [
       {type:"pattern", message:"Email non valida! Riprovare"}
@@ -24,8 +29,7 @@ export class SignupPage implements OnInit {
   loading: any;
 
 
-  constructor(private router: Router,
-              private navCtr: NavController ,private formbuilder:FormBuilder, private authService: AuthService, public loadingCtrl : LoadingController, private alertCtrl: AlertController){
+  constructor( private nav: NavController, private route: Router, private authservice: AuthService, private firestore: AngularFirestore, private router: Router, private navCtr: NavController ,private formbuilder:FormBuilder, private authService: AuthService, public loadingCtrl : LoadingController, private alertCtrl: AlertController){
    this.loading = this.loadingCtrl
   }
 
@@ -38,6 +42,12 @@ export class SignupPage implements OnInit {
       password: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(6)
+      ])),
+      nome: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      cognome: new FormControl('', Validators.compose([
+        Validators.required
       ]))
     })
   }
@@ -49,14 +59,43 @@ export class SignupPage implements OnInit {
         console.log(response);
         if(response.user){
           this.loading.dismiss();
-          this.router.navigate(['login']);
+
+
+
+
+          this.authservice.loginFireauth(value).then( resp =>{
+            this.route.navigate(['tabs']);
+            this.authservice.setUser({
+              email: resp.user.email,
+              uid: resp.user.uid
+            })
+            if(resp.user){
+              const userProfile = this.firestore.collection('utente').doc(resp.user.uid);
+              userProfile.get().subscribe( result=>{
+                if(result.exists){
+                  this.nav.navigateForward(['tabs']);
+                } 
+                else{
+                  this.firestore.doc(`utente/${this.authservice.getUserUid()}`).set({
+                    email: resp.user.email,
+                    id: this.authservice.getUserUid(),
+                    nome: value['nome'],
+                    cognome: value['cognome']
+                  });
+                }
+              });
+            }  
+          });
+          this.authservice.loginFireauth(value).catch( resp =>{
+             this.flagAuth = true;
+          });
         }
       }, error=>{
         this.loading.dismiss();
         this.errorLoading(error.message);
       })
     } catch (erro){
-      console.log(erro)
+      console.log(erro);
     }
 
   }

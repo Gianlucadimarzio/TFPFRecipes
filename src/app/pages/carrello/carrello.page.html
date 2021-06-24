@@ -1,14 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>carrello</ion-title>
+    <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content >
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-item *ngFor="let ingrediente of ingredienti">
-    <p> {{ingrediente.nome}}</p>
-  </ion-item>
+  <ion-card>
+    <ion-card-header class="lista-header">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <h4><ion-icon name="receipt-outline"></ion-icon> Lista della spesa</h4>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item *ngFor="let ingrediente of ingredienti">
+        <p> {{ingrediente.nome}}</p>
+        <ion-button slot="end" (click)="deleteFromCarrello(ingrediente.id)" (click)= doRefresh($event) ><ion-icon name="trash-outline"></ion-icon></ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>

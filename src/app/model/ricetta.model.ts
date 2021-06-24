@@ -1,3 +1,4 @@
+
 export class Ricetta {
 
     id: string;
@@ -6,18 +7,20 @@ export class Ricetta {
     difficolta: string;
     immagine: string;
     procedimento: string;
-    tempo: string;
+    tempo: number;
     categoria: string;
 
-    constructor( i:string, n:string, d:string, di:string, im:string, p:string, t:string ){ 
+    constructor( i:string, n:string, d:string, di:string, im:string, p:string, t:number, c:string ){ 
         this.id = i;
         this.nome = n;
         this.descrizione = d;
-        this.difficolta = di;
+        if( di == "1") this.difficolta = "Facile";
+        if( di == "2") this.difficolta = "Media";
+        if( di == "3") this.difficolta = "Difficile";
         this.immagine = im;
         this.procedimento = p;
-        this.tempo = t;
-        this.categoria = "Non Specificata";
+        this.tempo = +t;
+        this.categoria = c;
     }
     getId(){
         return this.id;
@@ -42,8 +45,5 @@ export class Ricetta {
     }
     getCategoria(){
         return this.categoria;
-    }
-    setCategoria( c:string ){
-        this.categoria = c;
     }
 }

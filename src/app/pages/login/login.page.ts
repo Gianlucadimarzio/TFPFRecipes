@@ -62,11 +62,6 @@ export class LoginPage implements OnInit {
           userProfile.get().subscribe( result=>{
             if(result.exists){
               this.nav.navigateForward(['tabs']);
-            } else {
-              this.firestore.doc(`utente/${this.authservice.getUserUid()}`).set({
-                email: resp.user.email,
-                id: this.authservice.getUserUid()
-              });
             }
           })
         }  
