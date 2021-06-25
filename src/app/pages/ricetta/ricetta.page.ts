@@ -7,6 +7,7 @@ import { Utente } from 'src/app/model/utente.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { IngredienteService } from 'src/app/services/ingrediente.service';
 import { UtenteService } from 'src/app/services/utente.service';
+import { RecensioneService } from 'src/app/services/recensione.service';
 
 @Component({
   selector: 'app-ricetta',
@@ -21,10 +22,11 @@ export class RicettaPage implements OnInit{
   flagRicettario: Array<any>;
   flagAllIngredienti: Array<any>;
   ingredienti: Array<any>;
+  recensioni: Array<any>;
   ricetta: Array<any>;
 
 
-  constructor( private utenteService: UtenteService, private ingredienteService: IngredienteService , private authService: AuthService, private ricettaService: RicettaService, private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore, public toastController: ToastController ) {
+  constructor( private recensioneService: RecensioneService, private utenteService: UtenteService, private ingredienteService: IngredienteService , private authService: AuthService, private ricettaService: RicettaService, private router:Router, private activatedRoute: ActivatedRoute, private database : AngularFirestore, public toastController: ToastController ) {
 
   }
 
@@ -36,7 +38,7 @@ export class RicettaPage implements OnInit{
     this.ricetta = this.ricettaService.getRicetta( this.id );
     this.flagRicettario = this.utenteService.getFlagRicettario( this.utente, this.id );
     this.flagAllIngredienti = this.utenteService.getFlagAllIngredienti( this.utente, this.id );
-
+    this.recensioni = this.recensioneService.getRecensioniRicetta( this.id );
   }
 
   routerHome(){
@@ -66,10 +68,7 @@ export class RicettaPage implements OnInit{
   }
   
   async addCartSingle( idIngrediente: string ) { 
-
     this.ingredienteService.addIngredienteToCarrello( idIngrediente, this.utente );
-    //this.ingredienti = this.ingredienteService.listaIngredientiRicetta( this.id, this.utente );
-    //this.flagAllIngredienti = this.utenteService.getFlagAllIngredienti( this.utente, this.id );
     const toast = await this.toastController.create({
       message: 'Ingrediente aggiunto alla lista della spesa!',
       duration: 500,
@@ -82,9 +81,6 @@ export class RicettaPage implements OnInit{
 
   async addCart() {  
     this.ingredienteService.addAllIngredientiToCarrello( this.id, this.utente );
-    //this.ingredienti = this.ingredienteService.listaIngredientiRicetta( this.id, this.utente );
-    //this.flagAllIngredienti = this.utenteService.getFlagAllIngredienti( this.utente, this.id );
-
     const toast = await this.toastController.create({
       message: 'Ingredienti aggiunti alla lista della spesa!',
       duration: 500,
@@ -102,6 +98,10 @@ export class RicettaPage implements OnInit{
       this.flagAllIngredienti = this.utenteService.getFlagAllIngredienti( this.utente, this.id );
       event.target.complete(); 
     }, 250 );
+  }
+
+  slidesOptions = {
+    slidesPerView: 1.5
   }
 
 }

@@ -1,18 +1,7 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-row style="margin-top: 10px;">
-      <ion-col size="3">
-        <ion-thumbnail class="ion-margin-start">
-          <img src="assets/images/logo.png">
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col size="9">
-        <ion-searchbar></ion-searchbar>
-      </ion-col>
-    </ion-row>
-
+    <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content mode="md" fullscreen scrollY="true" *ngFor="let item of ricetta">
@@ -27,18 +16,38 @@
       <ion-card-subtitle><ion-icon name="restaurant-outline"></ion-icon> Difficoltà: {{item.difficolta}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content >
-      <div>
-        <ion-card-title>Descrizione</ion-card-title>
+      <div class="line">
+        <ion-card-title class="margin-title">Descrizione</ion-card-title>
         <p>{{item.descrizione}}</p>
       </div>
-      <div>
-        <ion-card-title>Ingredienti</ion-card-title>
+      <div class="line">
+        <ion-card-title class="margin-title">Ingredienti</ion-card-title>
         <ion-item *ngFor="let ingrediente of ingredienti">
           <p class="hidden-title">• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
-          <ion-button class="addCart" slot="end" (click)="addCartSingle( ingrediente.id )" (click)= doRefresh($event) [disabled]="ingrediente.flag"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+          <ion-button class="addCart" slot="end" (click)="addCartSingle( ingrediente.id )" (click)= doRefresh($event) [disabled]="ingrediente.flag"><ion-icon name="add-circle"></ion-icon></ion-button>
         </ion-item>
         <ion-button *ngFor="let flagAll of flagAllIngredienti" style="font-size: 12px;" expand="block" (click)="addCart()" (click)= doRefresh($event) [disabled]="flagAll.value">Aggiungi tutti gli ingredienti </ion-button>
       </div>
+      <div class="line" >
+        <ion-row class="margin-title">
+          <ion-col size="5"><ion-card-title>Recensioni</ion-card-title></ion-col>
+          <ion-col size="2"><a class="a-cursor" (click)="addRecensione(ricetta.id)"><ion-icon class="icon-size" name="add-circle"></ion-icon></a></ion-col>
+        </ion-row>
+      </div>
+
+      
+      <ion-slides mode="md" [options]="slidesOptions">
+        <ion-slide *ngFor=" let recensione of recensioni ">
+          <ion-card class="card bg-load">
+            <ion-card-content>
+              <small class="hidden-title">{{recensione.nome}} {{recensione.cognome}}</small>
+              <h2 class="hidden-title">{{recensione.titolo}}</h2>
+              <p class="ion-text-center">{{recensione.descrizione}}</p>
+            </ion-card-content>
+            
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
     </ion-card-content>
   </ion-card>
 </ion-content>
