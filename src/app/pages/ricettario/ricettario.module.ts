@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecensionePageRoutingModule } from './recensione-routing.module';
+import { RicettarioPageRoutingModule } from './ricettario-routing.module';
 
-import { RecensionePage } from './recensione.page';
+import { RicettarioPage } from './ricettario.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecensionePageRoutingModule
+    RicettarioPageRoutingModule
   ],
-  declarations: [RecensionePage]
+  declarations: [RicettarioPage]
 })
-export class RecensionePageModule {}
+export class RicettarioPageModule {}

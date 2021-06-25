@@ -20,10 +20,17 @@ export class RicettaService {
 
     getRicettario( utente: Utente ){
         var lista = new Array();
-        this.database.collection('ricettario').get().subscribe( result => {
-            result.forEach( row => {
-                if( row.data()['utente'] == utente.getId() )
-                lista.push( { nome: row.data()['ricetta'] } );
+        this.database.collection('ricettario').get().subscribe( resultRicettario => {
+            resultRicettario.forEach( rowRicettario => {
+                if( rowRicettario.data()['utente'] == utente.getId() ){
+                  this.database.collection('ricetta').get().subscribe( resultRicetta =>{
+                    resultRicetta.forEach( rowRicetta =>{
+                      if( rowRicetta.data()['id'] == rowRicettario.data()['ricetta'] ){
+                        lista.push( { nome: rowRicetta.data()['nome'], id: rowRicetta.data()['id'], immagine: rowRicetta.data()['immagine'] } );
+                      }
+                    });
+                  });
+                }
             });
         });
         return lista;
@@ -120,6 +127,16 @@ export class RicettaService {
         });
       }
 
+    }
+
+    removeFromRicettario( idRicetta: string, utente: Utente ){
+      this.database.collection('ricettario').get().subscribe( resultRicettario =>{
+        resultRicettario.forEach( rowRicettario => {
+          if( rowRicettario.data()['ricetta'] == idRicetta && rowRicettario.data()['utente'] == utente.getId() ){
+            this.database.collection('ricettario').doc(`${rowRicettario.data()['id']}`).delete();
+          }
+        });
+      });
     }
 
 

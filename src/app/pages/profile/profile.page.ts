@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import firebase from 'firebase';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,23 +11,23 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProfilePage implements OnInit {
 
   profileEmail: any;
-  constructor(private database : AngularFirestore,private authservice: AuthService) {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log("AUTH_USER", user);
+  constructor( private router: Router, private database : AngularFirestore, private authservice: AuthService){
 
-      if (user) {
-        const result = this.database.doc(`/utente/${this.authservice.getUserUid()}`);
-        var userprofile = result.valueChanges();
-        userprofile.subscribe(profile => {
-          console.log("PROFILE::", profile);
+  }
 
-           this.profileEmail = profile['email'];
-        })
-      }
-    })
-   }
-
-  ngOnInit() {
+  ngOnInit(){
+  }
+  datiPersonali(){
+    this.router.navigate(['dati-personali']);
+  }
+  recensioniPersonali(){
+    this.router.navigate(['recensioni']);
+  }
+  ricettario(){
+    this.router.navigate(['ricettario']);
+  }
+  test(){
+    alert("we");
   }
 
 }

@@ -51,11 +51,19 @@ export class UtenteService {
       return lista;
     }
 
+    getUtenteData( utente: Utente ){
+      var lista = new Array();
+      this.database.collection('utente').doc(`${utente.getId()}`).get().subscribe( rowUtente =>{
+        lista.push( { nome: rowUtente.data()['nome'], cognome: rowUtente.data()['cognome'], email:rowUtente.data()['email'] } );
+      });
+      return lista;
+    }
 
 
 
 
-    
+
+
 
 
 }

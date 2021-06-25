@@ -41,15 +41,24 @@ const routes: Routes = [
     loadChildren: () => import('./pages/carrello/carrello.module').then( m => m.CarrelloPageModule)
   },
   {
-    path: 'recensione',
-    loadChildren: () => import('./pages/recensione/recensione.module').then( m => m.RecensionePageModule)
-  },  {
     path: 'add-ricetta',
     loadChildren: () => import('./pages/add-ricetta/add-ricetta.module').then( m => m.AddRicettaPageModule)
   },
   {
     path: 'add-recensione/:xyz',
     loadChildren: () => import('./pages/add-recensione/add-recensione.module').then( m => m.AddRecensionePageModule)
+  },
+  {
+    path: 'dati-personali',
+    loadChildren: () => import('./pages/dati-personali/dati-personali.module').then( m => m.DatiPersonaliPageModule)
+  },
+  {
+    path: 'recensioni',
+    loadChildren: () => import('./pages/recensioni/recensioni.module').then( m => m.RecensioniPageModule)
+  },
+  {
+    path: 'ricettario',
+    loadChildren: () => import('./pages/ricettario/ricettario.module').then( m => m.RicettarioPageModule)
   },
 
 

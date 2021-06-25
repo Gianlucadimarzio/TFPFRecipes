@@ -45,6 +45,24 @@ export class RecensioneService {
       });
     }
 
+    getRecensioniByUtente( utente: Utente ){
+      var lista = new Array();
+      this.database.collection('recensione').get().subscribe( resultRecensioni =>{
+        resultRecensioni.forEach( rowRecensione => {
+          if( rowRecensione.data()['utente'] == utente.getId() ){
+            this.database.collection('ricetta').get().subscribe( resultRicette => {
+              resultRicette.forEach( rowRicetta => {
+                if( rowRicetta.data()['id'] == rowRecensione.data()['ricetta'] ){
+                  lista.push( { titolo: rowRecensione.data()['titolo'], testo: rowRecensione.data()['descrizione'], id: rowRecensione.data()['ricetta'], immagine: rowRicetta.data()['immagine'] } );
+                }
+              });
+            });
+          }
+        });
+      });
+      return lista;
+    }
+
 
 
 }

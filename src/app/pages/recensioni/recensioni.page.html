@@ -1,17 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <img src="assets/images/logo_h.png" class="img-h">
+    <ion-title>recensioni</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content >
+  <ion-item *ngFor="let recensione of recensioni">
+    <img style="cursor: pointer" (click)=showRicetta(recensione.id) slot="start" height=75 width=75 src="{{recensione.immagine}}" alt="immagine ricetta">
+    <ion-item lines=none>
+      {{recensione.titolo}}
+      <br>
+      {{recensione.testo}}
+    </ion-item>
+  </ion-item>
+</ion-content>
 
-<ion-tab-bar slot="bottom">
+<ion-tab-bar slot="bottom" mode="md">
   <ion-tab-button tab="home" (click)="routerHome()" >
     <ion-icon name="home"></ion-icon>
   </ion-tab-button>
 
   <ion-tab-button tab="recipes" (click)="routerRicerca()">
     <ion-icon name="restaurant-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="addRicetta" (click)="routerAddRicetta()">
+    <ion-icon name="add-circle-outline"></ion-icon>
   </ion-tab-button>
 
   <ion-tab-button tab="cart" (click)="routerCarrello()">

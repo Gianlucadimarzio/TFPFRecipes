@@ -5,18 +5,8 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-card>
-
-    <div ng-controller="MainCtrl">
-      <div ng-view></div>
-    </div>
-
-    <ion-card-content>
-      <ion-item lines="none">
-        <ion-icon name="mail"></ion-icon>
-        <ion-label>{{this.profileEmail}}</ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <ion-item style="cursor:pointer;" (click) = "recensioniPersonali()">LISTA RECENSIONI</ion-item>
+  <ion-item style="cursor:pointer;" (click) = "ricettario()">RICETTARIO</ion-item>
+  <ion-item style="cursor:pointer;" (click) = "test()">RICETTE PUBBLICATE</ion-item>
+  <ion-item style="cursor:pointer;" (click) = "datiPersonali()">DATI PERSONALI</ion-item>
 </ion-content>
