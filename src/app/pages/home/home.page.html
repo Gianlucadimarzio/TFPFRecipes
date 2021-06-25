@@ -1,14 +1,12 @@
-
-
 <ion-header >
-<ion-toolbar>
-    <img src="assets/images/logo_h.png" class="img-h">
-</ion-toolbar>
-<ion-slides style="width: 100%; height: 200px;" mode="ios">
-    <ion-slide style="cursor:pointer;" *ngFor="let ricettaSlider of ricetteSlider" (click)="btnClicked(ricettaSlider.id)" class="bg-img" style="background-image: url({{ricettaSlider.immagine}});">
-        <ion-col size="12"><h2>{{ricettaSlider.nome}}</h2></ion-col>
-    </ion-slide>
-</ion-slides>
+    <ion-toolbar>
+        <img src="assets/images/logo_h.png" class="img-h">
+    </ion-toolbar>
+    <ion-slides style="width: 100%; height: 200px;" mode="ios">
+        <ion-slide style="cursor:pointer;" *ngFor="let ricettaSlider of ricetteSlider" (click)="btnClicked(ricettaSlider.id)" class="bg-img" style="background-image: url({{ricettaSlider.immagine}});">
+            <ion-col size="12"><h2>{{ricettaSlider.nome}}</h2></ion-col>
+        </ion-slide>
+    </ion-slides>
 </ion-header>
 
 

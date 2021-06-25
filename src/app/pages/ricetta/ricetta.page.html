@@ -21,6 +21,10 @@
         <p>{{item.descrizione}}</p>
       </div>
       <div class="line">
+        <ion-card-title class="margin-title">Procedimento</ion-card-title>
+        <p>{{item.procedimento}}</p>
+      </div>
+      <div class="line">
         <ion-card-title class="margin-title">Ingredienti</ion-card-title>
         <ion-item *ngFor="let ingrediente of ingredienti">
           <p class="hidden-title">• {{ingrediente.nome}} : {{ingrediente.dose}}</p>
@@ -55,13 +59,17 @@
 
 
 
-<ion-tab-bar slot="bottom">
+<ion-tab-bar slot="bottom" mode="md">
   <ion-tab-button tab="home" (click)="routerHome()" >
     <ion-icon name="home"></ion-icon>
   </ion-tab-button>
 
   <ion-tab-button tab="recipes" (click)="routerRicerca()">
     <ion-icon name="restaurant-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="addRicetta" (click)="routerAddRicetta()">
+    <ion-icon name="add-circle-outline"></ion-icon>
   </ion-tab-button>
 
   <ion-tab-button tab="cart" (click)="routerCarrello()">

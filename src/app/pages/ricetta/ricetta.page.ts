@@ -53,6 +53,9 @@ export class RicettaPage implements OnInit{
   routerProfilo(){
     this.router.navigate(['tabs/tabs/profile']);
   }
+  routerAddRicetta(){
+    this.router.navigate(['tabs/tabs/addRicetta']);
+  }
 
   
   async addPref() {

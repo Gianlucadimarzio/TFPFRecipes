@@ -51,6 +51,8 @@ export class AddRicettaPage implements OnInit {
     }
   }
 
-
+  routerHome(){
+    this.router.navigate(['tabs/tabs/home']);
+  }
 
 }
