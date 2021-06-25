@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'recensione',
     loadChildren: () => import('./pages/recensione/recensione.module').then( m => m.RecensionePageModule)
+  },  {
+    path: 'add-ricetta',
+    loadChildren: () => import('./pages/add-ricetta/add-ricetta.module').then( m => m.AddRicettaPageModule)
   },
+
 
 ];
 

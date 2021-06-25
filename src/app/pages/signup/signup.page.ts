@@ -12,8 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {  
-  
+export class SignupPage implements OnInit {
+
   flagAuth = false;
 
   validationMessages = {
@@ -23,7 +23,7 @@ export class SignupPage implements OnInit {
     password: [
       {type:"minlength", message: "La password deve avere almeno 6 caratteri!"}
     ]
-  }
+  };
 
   ValidationFormUSer: FormGroup;
   loading: any;
@@ -74,7 +74,7 @@ export class SignupPage implements OnInit {
               userProfile.get().subscribe( result=>{
                 if(result.exists){
                   this.nav.navigateForward(['tabs']);
-                } 
+                }
                 else{
                   this.firestore.doc(`utente/${this.authservice.getUserUid()}`).set({
                     email: resp.user.email,
@@ -84,7 +84,7 @@ export class SignupPage implements OnInit {
                   });
                 }
               });
-            }  
+            }
           });
           this.authservice.loginFireauth(value).catch( resp =>{
              this.flagAuth = true;
@@ -116,7 +116,7 @@ export class SignupPage implements OnInit {
   async showalert(){
     var load = await this.loadingCtrl.create({
       message:"please wait....",
-   
+
     })
      load.present();
    }

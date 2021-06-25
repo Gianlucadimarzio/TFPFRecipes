@@ -23,15 +23,15 @@ export class IngredienteService {
                             if( rowIngrediente.data()['id'] == rowDose.data()['ingrediente'] ){
                                 this.database.collection('carrello').get().subscribe( resultCarrello => {
                                     var flag: boolean = false;
-                                    resultCarrello.forEach( rowCarrello => { 
+                                    resultCarrello.forEach( rowCarrello => {
                                         if( rowCarrello.data()['utente'] == utente.getId() && rowCarrello.data()['ingrediente'] == rowIngrediente.data()['id'] ){
                                             flag = true;
                                         }
                                     });
-                                    lista.push( { nome: rowIngrediente.data()['nome'], id: rowIngrediente.data()['id'], dose: rowDose.data()['quantita'], flag: flag  });   
+                                    lista.push( { nome: rowIngrediente.data()['nome'], id: rowIngrediente.data()['id'], dose: rowDose.data()['quantita'], flag: flag  });
                                 });
 
-                            }                           
+                            }
                         }
                     });
                 });
@@ -45,21 +45,21 @@ export class IngredienteService {
             resultDose.forEach( rowDose => {
                 if( rowDose.data()['ricetta'] == idRicetta ){
                     var flag: boolean = false;
-                    this.database.collection('carrello').get().subscribe( resultCarrello => {                       
-                        resultCarrello.forEach( rowCarrello => {                            
+                    this.database.collection('carrello').get().subscribe( resultCarrello => {
+                        resultCarrello.forEach( rowCarrello => {
                             if( rowCarrello.data()['utente'] == utente.getId() && rowCarrello.data()['ingrediente'] == rowDose.data()['ingrediente'] ){
                                 flag = true;
-                            }                            
+                            }
                         });
                         if( flag == false ){
                             var token = this.tokenService.generateToken();
                             this.database.collection('carrello').doc(`${token}`).set({
                               ingrediente: rowDose.data()['ingrediente'],
                               utente: utente.getId(),
-                              id: token 
+                              id: token
                             });
                         }
-                    }); 
+                    });
                 }
             });
         });
@@ -68,21 +68,21 @@ export class IngredienteService {
     addIngredienteToCarrello( idIngrediente: string, utente: Utente ){
         this.database.collection('dose').get().subscribe( resultDose => {
             var flag: boolean = false;
-            this.database.collection('carrello').get().subscribe( resultCarrello => {                       
-                resultCarrello.forEach( rowCarrello => {                            
+            this.database.collection('carrello').get().subscribe( resultCarrello => {
+                resultCarrello.forEach( rowCarrello => {
                     if( rowCarrello.data()['utente'] == utente.getId() && rowCarrello.data()['ingrediente'] == idIngrediente ){
                         flag = true;
-                    }                            
+                    }
                 });
                 if( flag == false ){
                     var token = this.tokenService.generateToken();
                     this.database.collection('carrello').doc(`${token}`).set({
                         ingrediente: idIngrediente,
                         utente: utente.getId(),
-                        id: token 
+                        id: token
                     });
                 }
-            }); 
+            });
         });
     }
 
@@ -114,10 +114,20 @@ export class IngredienteService {
         });
     }
 
+    getIngredienti(){
+      var lista = new Array();
+      this.database.collection('ingrediente').get().subscribe( resultIngrediente => {
+        resultIngrediente.forEach( rowIngrediente => {
+          lista.push( { nome: rowIngrediente.data()['nome'], id: rowIngrediente.data()['id'] } );
+        });
+      });
+      return lista;
+    }
 
 
 
-    
+
+
 
 
 }

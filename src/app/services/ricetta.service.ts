@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Ricetta } from '../model/ricetta.model';
 import { Utente } from '../model/utente.model';
 import { TokenService } from './token.service';
+import {NgForm} from '@angular/forms';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,10 +12,10 @@ import { TokenService } from './token.service';
 
 export class RicettaService {
 
-    
+
 
     constructor( private tokenService: TokenService, private database: AngularFirestore ){
-    
+
     }
 
     getRicettario( utente: Utente ){
@@ -32,11 +34,11 @@ export class RicettaService {
         this.database.collection('ricetta').get().subscribe( resultRicetta => {
             resultRicetta.forEach( rowRicetta => {
             if( rowRicetta.data()['id'] == id){
-                ricetta = new Ricetta( rowRicetta.data()['id'], rowRicetta.data()['nome'],rowRicetta.data()['descrizione'],rowRicetta.data()['difficolta'],rowRicetta.data()['immagine'],rowRicetta.data()['procedimento'],rowRicetta.data()['tempo'], rowRicetta.data()['categoria'] );    
+                ricetta = new Ricetta( rowRicetta.data()['id'], rowRicetta.data()['nome'],rowRicetta.data()['descrizione'],rowRicetta.data()['difficolta'],rowRicetta.data()['immagine'],rowRicetta.data()['procedimento'],rowRicetta.data()['tempo'], rowRicetta.data()['categoria'] );
                 lista.push( { nome: ricetta.getNome(), immagine: ricetta.getImmagine(), descrizione: ricetta.getDescrizione(), difficolta : ricetta.getDifficolta(), tempo: ricetta.getTempo(), categoria: ricetta.getCategoria() } );
             }
-          }); 
-        });   
+          });
+        });
         return lista;
     }
 
@@ -88,12 +90,40 @@ export class RicettaService {
         });
 
     }
+    addRicetta( form: NgForm, indice: number, utente: Utente ){
+      console.log( form.value );
+      var token = this.tokenService.generateToken();
+      var categoria = form.value['categoria'];
+      var descrizione = form.value['descrizione'];
+      var difficolta = form.value['difficolta'];
+      var immagine = form.value['immagine'];
+      var nome = form.value['nome'];
+      var durata = form.value['durata'];
+      var procedimento = form.value['procedimento'];
+      this.database.collection('ricetta').doc(`${token}`).set({
+          id: token,
+          utente: utente.getId(),
+          immagine: immagine,
+          nome: nome,
+          categoria: categoria,
+          descrizione: descrizione,
+          procedimento: procedimento,
+          tempo: durata,
+          difficolta: difficolta
+      });
+      for( let i = 0; i < indice; i++ ){
+        var tokenIngrediente = this.tokenService.generateToken();
+        this.database.collection('dose').doc(`${tokenIngrediente}`).set({
+            ricetta: token,
+            quantita: form.value[i + 1000000],
+            ingrediente: form.value[i]
+        });
+      }
+
+    }
 
 
 
 
-    
+
 }
-
-
-

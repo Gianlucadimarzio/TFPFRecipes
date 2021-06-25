@@ -7,16 +7,18 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 
 export class CategoriaService {
-    
-    categorieCollection: AngularFirestoreCollection;
 
-    constructor( private afs: AngularFirestore ){
-        this.categorieCollection = this.afs.collection('categoria');
+    constructor( private database: AngularFirestore ){
     }
 
     getCategorie(){
-       return this.categorieCollection.valueChanges( { idField: 'myID' } );
+      var lista = new Array();
+       this.database.collection('categoria').get().subscribe( resultCategoria =>{
+         resultCategoria.forEach( rowCategoria => {
+           lista.push( { nome: rowCategoria.data()['nome'] } );
+         });
+       });
+       return lista;
     }
 
 }
-

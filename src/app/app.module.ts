@@ -20,7 +20,7 @@ import { firebaseConfig } from 'src/environments/environment.prod';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [CommonModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule, AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AngularFirestoreModule],
+  imports: [ FormsModule, ReactiveFormsModule, CommonModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule, AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AngularFirestoreModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
