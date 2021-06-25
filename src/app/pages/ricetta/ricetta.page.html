@@ -35,11 +35,11 @@
       <div class="line" >
         <ion-row class="margin-title">
           <ion-col size="5"><ion-card-title>Recensioni</ion-card-title></ion-col>
-          <ion-col size="2"><a class="a-cursor" (click)="addRecensione(ricetta.id)"><ion-icon class="icon-size" name="add-circle"></ion-icon></a></ion-col>
+          <ion-col size="2"><a class="a-cursor" (click)="addRecensione()"><ion-icon class="icon-size" name="add-circle"></ion-icon></a></ion-col>
         </ion-row>
       </div>
 
-      
+
       <ion-slides mode="md" [options]="slidesOptions">
         <ion-slide *ngFor=" let recensione of recensioni ">
           <ion-card class="card bg-load">
@@ -48,7 +48,7 @@
               <h2 class="hidden-title">{{recensione.titolo}}</h2>
               <p class="ion-text-center">{{recensione.descrizione}}</p>
             </ion-card-content>
-            
+
           </ion-card>
         </ion-slide>
       </ion-slides>

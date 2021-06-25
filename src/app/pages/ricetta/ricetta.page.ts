@@ -57,7 +57,7 @@ export class RicettaPage implements OnInit{
     this.router.navigate(['tabs/tabs/addRicetta']);
   }
 
-  
+
   async addPref() {
     this.ricettaService.addRicettaToRicettario( this.id, this.utente );
     const toast = await this.toastController.create({
@@ -69,8 +69,8 @@ export class RicettaPage implements OnInit{
     });
     toast.present();
   }
-  
-  async addCartSingle( idIngrediente: string ) { 
+
+  async addCartSingle( idIngrediente: string ) {
     this.ingredienteService.addIngredienteToCarrello( idIngrediente, this.utente );
     const toast = await this.toastController.create({
       message: 'Ingrediente aggiunto alla lista della spesa!',
@@ -82,7 +82,7 @@ export class RicettaPage implements OnInit{
     toast.present();
   }
 
-  async addCart() {  
+  async addCart() {
     this.ingredienteService.addAllIngredientiToCarrello( this.id, this.utente );
     const toast = await this.toastController.create({
       message: 'Ingredienti aggiunti alla lista della spesa!',
@@ -95,16 +95,20 @@ export class RicettaPage implements OnInit{
   }
 
   doRefresh(event) {
-    setTimeout( () => { 
+    setTimeout( () => {
       this.ingredienti = this.ingredienteService.listaIngredientiRicetta( this.id, this.utente );
       this.flagRicettario = this.utenteService.getFlagRicettario( this.utente, this.id );
       this.flagAllIngredienti = this.utenteService.getFlagAllIngredienti( this.utente, this.id );
-      event.target.complete(); 
+      event.target.complete();
     }, 250 );
   }
 
   slidesOptions = {
     slidesPerView: 1.5
+  }
+
+  addRecensione(){
+    this.router.navigate([`add-recensione/${this.id}`]);
   }
 
 }

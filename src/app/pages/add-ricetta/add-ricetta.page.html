@@ -13,45 +13,45 @@
       <h4><ion-icon name="restaurant"></ion-icon> Inserisci una ricetta</h4>
     </ion-card-header>
     <ion-card-content>
-      <form #f="ngForm" (ngSubmit)=addRicetta(f)>
+      <form #f="ngForm" (ngSubmit)="addRicetta(f)" (ngSubmit)="f.reset()" >
 
         <ion-item>
           <ion-input required ngModel name="nome" type="text" placeholder="Nome ricetta"></ion-input>
         </ion-item>
-    
+
         <ion-item>
           <ion-input required ngModel name="immagine" type="text" placeholder="URL Immagine ricetta"></ion-input>
         </ion-item>
-    
+
         <ion-item>
           <ion-label><ion-card-title mode="md">Categoria</ion-card-title></ion-label>
           <ion-select  name="categoria" ngModel okText="Aggiungi" cancelText="Annulla" required>
             <ion-select-option *ngFor="let categoria of categorie" value="{{categoria.nome}}">{{categoria.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
-    
+
         <ion-item>
           <ion-input required ngModel name="descrizione" type="text" placeholder="Descrizione ricetta"></ion-input>
         </ion-item>
-    
+
         <ion-item>
           <ion-input required ngModel name="procedimento" type="text" placeholder="Procedimento ricetta"></ion-input>
         </ion-item>
-    
+
         <ion-item>
           <ion-input required ngModel name="durata" type="number" placeholder="Durata ricetta"></ion-input>
         </ion-item>
-    
+
         <ion-item>
           <ion-label><ion-card-title mode="md">Difficoltà</ion-card-title></ion-label>
           <ion-select  name="difficolta" ngModel okText="Conferma" cancelText="Annulla" required>
-            
+
             <ion-select-option value="1">Facile</ion-select-option>
             <ion-select-option value="2">Media</ion-select-option>
             <ion-select-option value="3">Difficile</ion-select-option>
           </ion-select>
         </ion-item>
-    
+
         <ion-row>
           <ion-col size="8">
             <ion-card-title  mode="md">Ingredienti</ion-card-title>
@@ -68,10 +68,10 @@
             <ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
           </ion-select>
           <ion-input name="{{item.valueDose}}" ngModel type="text" placeholder="Dose" required></ion-input>
-    
+
         </ion-item>
-        
-        <ion-button expand="block" [disabled]="!f.valid" type="submit" (click)="routerHome()">Inserisci ricetta</ion-button>
+
+        <ion-button expand="block" [disabled]="!f.valid" type="submit">Inserisci ricetta</ion-button>
       </form>
 
       <div class="bottom">

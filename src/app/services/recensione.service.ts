@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { TokenService } from 'src/app/services/token.service';
+import {NgForm} from '@angular/forms';
+import { Utente } from 'src/app/model/utente.model';
+
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +14,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 export class RecensioneService {
 
 
-    constructor(  private database: AngularFirestore ){
+    constructor(  private tokenService: TokenService, private database: AngularFirestore ){
     }
 
     getRecensioniRicetta( ricetta: string ){
@@ -28,7 +34,17 @@ export class RecensioneService {
         });
         return lista;
     }
-    
+
+    addRecensione( form: NgForm, idRicetta: string, utente: Utente ){
+      var token = this.tokenService.generateToken();
+      this.database.collection('recensione').doc(`${token}`).set({
+        utente: utente.getId(),
+        ricetta: idRicetta,
+        titolo: form.value['titolo'],
+        descrizione: form.value['testo']
+      });
+    }
+
 
 
 }

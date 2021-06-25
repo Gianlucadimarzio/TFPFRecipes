@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-add-ricetta',
   templateUrl: './add-ricetta.page.html',
@@ -22,6 +23,9 @@ export class AddRicettaPage implements OnInit {
   items : Array<any>;
   indice : number;
   indiceDose : number;
+
+
+
 
 
   constructor( private router:Router, private database : AngularFirestore, private authService: AuthService, private ricettaService: RicettaService, private ingredienteService: IngredienteService , private categoriaService: CategoriaService ) {
@@ -39,6 +43,7 @@ export class AddRicettaPage implements OnInit {
 
   addRicetta( form: NgForm ){
     this.ricettaService.addRicetta( form, this.indice, this.utente );
+    this.router.navigate(['tabs/tabs/home']);
   }
   addIngrediente(){
     this.items.push( { value: this.indice, valueDose: this.indice + 1000000 } );
@@ -51,8 +56,5 @@ export class AddRicettaPage implements OnInit {
     }
   }
 
-  routerHome(){
-    this.router.navigate(['tabs/tabs/home']);
-  }
 
 }

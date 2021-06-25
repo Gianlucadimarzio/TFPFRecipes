@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard]
   },
   {
     path: 'ricetta/:xyz',
@@ -46,6 +46,10 @@ const routes: Routes = [
   },  {
     path: 'add-ricetta',
     loadChildren: () => import('./pages/add-ricetta/add-ricetta.module').then( m => m.AddRicettaPageModule)
+  },
+  {
+    path: 'add-recensione/:xyz',
+    loadChildren: () => import('./pages/add-recensione/add-recensione.module').then( m => m.AddRecensionePageModule)
   },
 
 
