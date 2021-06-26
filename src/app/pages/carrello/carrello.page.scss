@@ -33,3 +33,16 @@ ion-card-header{
         object-fit: cover;
     }
 }
+
+.margin-item{
+    margin-bottom: 10px 0px 10px 10px;
+}
+
+.a-trash{
+    background-color: transparent;
+    color: #b00011;
+    cursor: pointer;
+    ion-icon{
+        font-size: 22px;
+    }
+}

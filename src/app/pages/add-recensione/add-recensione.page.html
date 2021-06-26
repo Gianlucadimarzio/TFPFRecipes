@@ -1,19 +1,33 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>addRecensione</ion-title>
+      <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form #f="ngForm" (ngSubmit)="addRecensione(f)" (ngSubmit)="f.reset()" >
-    <ion-item>
-      <ion-input required ngModel name="titolo" type="text" placeholder="Titolo recensione"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input required ngModel name="testo" type="text" placeholder="Testo recensione"></ion-input>
-    </ion-item>
-    <ion-button expand="block" [disabled]="!f.valid" type="submit">Inserisci recensione</ion-button>
-  </form>
+<ion-content >
+  <ion-card>
+    <ion-card-header>
+      <div class="top">
+        <img src="../../assets/images/header.png">
+      </div>
+      <h4><ion-icon name="restaurant"></ion-icon> Aggiungi recensione <ion-icon name="restaurant"></ion-icon></h4>
+    </ion-card-header>
+    <ion-card-content>
+      <form #f="ngForm" (ngSubmit)="addRecensione(f)" (ngSubmit)="f.reset()" >
+        <ion-item>
+          <ion-input required ngModel name="titolo" type="text" placeholder="Titolo recensione"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required ngModel name="testo" type="text" placeholder="Testo recensione"></ion-input>
+        </ion-item>
+        <ion-button mode="ios" expand="block" [disabled]="!f.valid" type="submit">Recensisci</ion-button>
+      </form>
+      <div class="bottom">
+        <img src="../../assets/images/headerFooter.png">
+      </div>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 
 

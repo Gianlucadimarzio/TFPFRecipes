@@ -1,0 +1,49 @@
+ion-content {
+    background-color: whitesmoke;
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+h4{
+    text-align: center;
+    color: #b00011;
+}
+
+ion-card-header{
+    width: 100%;
+}
+
+.top{
+
+    img{
+        width: inherit;
+        object-fit: cover;
+    }
+}
+
+.bottom{
+    margin-bottom: 0;
+    img{
+        width: inherit;
+        object-fit: cover;
+    }
+}
+
+.border{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.a-delete{
+    color: #b00011;
+    background-color: transparent;
+    cursor: pointer;
+    ion-icon{
+        font-size: 22px;
+    }
+}

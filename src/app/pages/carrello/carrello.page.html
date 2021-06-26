@@ -20,9 +20,9 @@
 
     <ion-card-content>
 
-      <ion-item *ngFor="let ingrediente of ingredienti">
-        <p> {{ingrediente.nome}}</p>
-        <ion-button slot="end" (click)="deleteFromCarrello(ingrediente.id)" (click)= doRefresh($event) ><ion-icon name="trash-outline"></ion-icon></ion-button>
+      <ion-item lines="none" class="margin-item" *ngFor="let ingrediente of ingredienti">
+        <p class="hidden-title"> {{ingrediente.nome}}</p>
+        <a class="a-trash" slot="end" (click)="deleteFromCarrello(ingrediente.id)" (click)= doRefresh($event) ><ion-icon name="trash"></ion-icon></a>
       </ion-item>
       <div class="bottom">
         <img src="../../assets/images/headerFooter.png">

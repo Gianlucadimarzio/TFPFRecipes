@@ -1,13 +1,27 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>datiPersonali</ion-title>
+      <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content *ngFor="let item of user">
-  <ion-item>Nome: {{item.nome}}</ion-item>
-  <ion-item>Cognome: {{item.cognome}}</ion-item>
-  <ion-item>Email: {{item.email}}</ion-item>
+    <ion-card>
+      <ion-card-header>
+        <div class="top">
+          <img src="../../assets/images/header.png">
+        </div>
+        <h4><ion-icon name="person"></ion-icon> Dati personali <ion-icon name="person"></ion-icon></h4>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item class="ion-margin" lines="none"><p>Nome: {{item.nome}}</p></ion-item>
+        <ion-item class="ion-margin" lines="none"><p>Cognome: {{item.cognome}}</p></ion-item>
+        <ion-item class="ion-margin" lines="none"><p>Email: {{item.email}}</p></ion-item>
+        <div class="bottom">
+          <img src="../../assets/images/headerFooter.png">
+        </div>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
 
 <ion-tab-bar slot="bottom" mode="md">

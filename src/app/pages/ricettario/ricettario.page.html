@@ -1,17 +1,34 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>ricettario</ion-title>
+      <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let ricetta of ricette">
-    <img style="cursor: pointer" (click)=showRicetta(ricetta.id) slot="start" height=75 width=75 src="{{ricetta.immagine}}" alt="immagine ricetta">
-    <ion-item lines=none>
-      {{ricetta.nome}}
-    </ion-item>
-    <ion-button slot="end" (click)="removeFromRicettario(ricetta.id)" (click)= doRefresh($event) >DELETE</ion-button>
-  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <div class="top">
+        <img src="../../assets/images/header.png">
+      </div>
+      <h4><ion-icon name="restaurant"></ion-icon> Il tuo ricettario <ion-icon name="restaurant"></ion-icon></h4>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none" class="border" *ngFor="let ricetta of ricette">
+        <ion-avatar slot="start">
+          <img style="cursor: pointer" (click)=showRicetta(ricetta.id) src="{{ricetta.immagine}}" alt="immagine ricetta">
+        </ion-avatar>
+        <ion-label class="hidden-title">
+          {{ricetta.nome}}
+        </ion-label>
+        <a class="a-delete" slot="end" (click)="removeFromRicettario(ricetta.id)" (click)= doRefresh($event) ><ion-icon name="close-circle"></ion-icon></a>
+      </ion-item>
+      <div class="bottom">
+        <img src="../../assets/images/headerFooter.png">
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
 
 <ion-tab-bar slot="bottom" mode="md">
