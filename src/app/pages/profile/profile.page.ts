@@ -30,7 +30,7 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['ricette-pubblicate']);
   }
   logout(){
-    this.router.navigate(['login']);
+    this.router.navigate(['load']);
   }
 
 

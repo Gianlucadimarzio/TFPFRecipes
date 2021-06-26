@@ -65,6 +65,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/ricette-pubblicate/ricette-pubblicate.module').then( m => m.RicettePubblicatePageModule)
   },
   {
+    path: 'load',
+    loadChildren: () => import('./pages/load/load.module').then( m => m.LoadPageModule)
+  },
+  {
     path: 'ricerca-ricette-categoria/:xyz',
     loadChildren: () => import('./pages/ricerca-ricette-categoria/ricerca-ricette-categoria.module').then( m => m.RicercaRicetteCategoriaPageModule)
   },
