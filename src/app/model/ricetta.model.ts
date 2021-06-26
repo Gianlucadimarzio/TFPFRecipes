@@ -3,17 +3,15 @@ export class Ricetta {
 
     id: string;
     nome: string;
-    descrizione: string;
     difficolta: string;
     immagine: string;
     procedimento: string;
     tempo: number;
     categoria: string;
 
-    constructor( i:string, n:string, d:string, di:string, im:string, p:string, t:number, c:string ){ 
+    constructor( i:string, n:string, di:string, im:string, p:string, t:number, c:string ){
         this.id = i;
         this.nome = n;
-        this.descrizione = d;
         if( di == "1") this.difficolta = "Facile";
         if( di == "2") this.difficolta = "Media";
         if( di == "3") this.difficolta = "Difficile";
@@ -27,9 +25,6 @@ export class Ricetta {
     }
     getNome(){
         return this.nome;
-    }
-    getDescrizione(){
-        return this.descrizione;
     }
     getDifficolta(){
         return this.difficolta;

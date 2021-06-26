@@ -41,7 +41,7 @@ export class RicettaService {
         this.database.collection('ricetta').get().subscribe( resultRicetta => {
             resultRicetta.forEach( rowRicetta => {
             if( rowRicetta.data()['id'] == id){
-                ricetta = new Ricetta( rowRicetta.data()['id'], rowRicetta.data()['nome'],rowRicetta.data()['descrizione'],rowRicetta.data()['difficolta'],rowRicetta.data()['immagine'],rowRicetta.data()['procedimento'],rowRicetta.data()['tempo'], rowRicetta.data()['categoria'] );
+                ricetta = new Ricetta( rowRicetta.data()['id'], rowRicetta.data()['nome'],rowRicetta.data()['difficolta'],rowRicetta.data()['immagine'],rowRicetta.data()['procedimento'],rowRicetta.data()['tempo'], rowRicetta.data()['categoria'] );
                 lista.push( { nome: ricetta.getNome(), procedimento: ricetta.getProcedimento(), immagine: ricetta.getImmagine(), difficolta : ricetta.getDifficolta(), tempo: ricetta.getTempo(), categoria: ricetta.getCategoria() } );
             }
           });
@@ -65,7 +65,7 @@ export class RicettaService {
         var cont: number = 0; var lista = new Array(); var ricetta: Ricetta;
         this.database.collection('ricetta').get().subscribe( resultRicettaFacile => {
             resultRicettaFacile.forEach( rowRicettaFacile =>{
-                ricetta = new Ricetta( rowRicettaFacile.data()['id'], rowRicettaFacile.data()['nome'], rowRicettaFacile.data()['descrizione'], rowRicettaFacile.data()['difficolta'], rowRicettaFacile.data()['immagine'], rowRicettaFacile.data()['procedimento'], rowRicettaFacile.data()['tempo'], rowRicettaFacile.data()['categoria']);
+                ricetta = new Ricetta( rowRicettaFacile.data()['id'], rowRicettaFacile.data()['nome'], rowRicettaFacile.data()['difficolta'], rowRicettaFacile.data()['immagine'], rowRicettaFacile.data()['procedimento'], rowRicettaFacile.data()['tempo'], rowRicettaFacile.data()['categoria']);
                 if( cont < 6 && ricetta.getDifficolta() == "Facile" ){
                     lista.push( { nome:ricetta.getNome(), immagine:ricetta.getImmagine(), categoria:ricetta.getCategoria(), id:ricetta.getId() }  );
                     cont++;
@@ -78,7 +78,7 @@ export class RicettaService {
         var cont: number = 0; var lista = new Array(); var ricetta: Ricetta;
         this.database.collection('ricetta').get().subscribe( resultRicettaVeloce => {
             resultRicettaVeloce.forEach( rowRicettaVeloce =>{
-                ricetta = new Ricetta( rowRicettaVeloce.data()['id'], rowRicettaVeloce.data()['nome'], rowRicettaVeloce.data()['descrizione'], rowRicettaVeloce.data()['difficolta'], rowRicettaVeloce.data()['immagine'], rowRicettaVeloce.data()['procedimento'], rowRicettaVeloce.data()['tempo'], rowRicettaVeloce.data()['categoria']);
+                ricetta = new Ricetta( rowRicettaVeloce.data()['id'], rowRicettaVeloce.data()['nome'], rowRicettaVeloce.data()['difficolta'], rowRicettaVeloce.data()['immagine'], rowRicettaVeloce.data()['procedimento'], rowRicettaVeloce.data()['tempo'], rowRicettaVeloce.data()['categoria']);
                 if( cont < 6 && ricetta.getTempo() < 30 ){
                     lista.push( { nome:ricetta.getNome(), immagine:ricetta.getImmagine(), categoria:ricetta.getCategoria(), id:ricetta.getId() }  );
                     cont++;
@@ -98,7 +98,6 @@ export class RicettaService {
 
     }
     addRicetta( form: NgForm, indice: number, utente: Utente ){
-      console.log( form.value );
       var token = this.tokenService.generateToken();
       var categoria = form.value['categoria'];
       var difficolta = form.value['difficolta'];
