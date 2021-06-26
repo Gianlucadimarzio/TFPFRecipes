@@ -34,3 +34,21 @@
 
 
 </ion-content>
+
+<ion-tab-bar slot="bottom" mode="md">
+  <ion-tab-button tab="home" (click)="routerHome()" >
+    <ion-icon name="home"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="recipes" (click)="routerRicerca()">
+    <ion-icon name="restaurant-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="addRicetta" (click)="routerAddRicetta()">
+    <ion-icon name="add-circle-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="profile" (click)="routerProfilo()">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-tab-button>
+</ion-tab-bar>

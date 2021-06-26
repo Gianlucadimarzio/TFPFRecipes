@@ -15,7 +15,7 @@
     <ion-card-content>
       <ion-item style="margin-bottom: 10px;" lines="none" *ngFor="let recensione of recensioni">
         <ion-avatar>
-          <img style="cursor: pointer" (click)=showRicetta(recensione.id) src="{{recensione.immagine}}" alt="immagine ricetta">
+          <img style="cursor: pointer" (click)=showRicetta(recensione.idRicetta) src="{{recensione.immagine}}" alt="immagine ricetta">
         </ion-avatar>
         <a class="a-trash" slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event)><ion-icon name="close-circle"></ion-icon></a>
 
@@ -47,10 +47,6 @@
 
   <ion-tab-button tab="addRicetta" (click)="routerAddRicetta()">
     <ion-icon name="add-circle-outline"></ion-icon>
-  </ion-tab-button>
-
-  <ion-tab-button tab="cart" (click)="routerCarrello()">
-    <ion-icon name="receipt-outline"></ion-icon>
   </ion-tab-button>
 
   <ion-tab-button tab="profile" (click)="routerProfilo()">

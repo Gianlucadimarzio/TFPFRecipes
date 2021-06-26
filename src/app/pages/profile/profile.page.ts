@@ -32,6 +32,9 @@ export class ProfilePage implements OnInit {
   logout(){
     this.router.navigate(['load']);
   }
+  carrello(){
+    this.router.navigate(['carrello']);
+  }
 
 
 }

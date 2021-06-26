@@ -12,8 +12,6 @@ const routes: Routes = [
       {path:"recipes", loadChildren:() => import('src/app/pages/ricerca-ricette/ricerca-ricette.module').then(res => res.RicercaRicettePageModule)},
       {path:"addRicetta", loadChildren:() => import('src/app/pages/add-ricetta/add-ricetta.module').then(res => res.AddRicettaPageModule)},
       {path:"profile", loadChildren:() => import('src/app/pages/profile/profile.module').then(res => res.ProfilePageModule)},
-      {path:"cart", loadChildren:() => import('src/app/pages/carrello/carrello.module').then(res => res.CarrelloPageModule)},
-
     ]
   },
   {

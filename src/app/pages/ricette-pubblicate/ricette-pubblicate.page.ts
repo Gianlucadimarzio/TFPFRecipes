@@ -30,9 +30,6 @@ export class RicettePubblicatePage implements OnInit {
   routerRicerca(){
     this.router.navigate(['tabs/tabs/recipes']);
   }
-  routerCarrello(){
-    this.router.navigate(['tabs/tabs/cart']);
-  }
   routerProfilo(){
     this.router.navigate(['tabs/tabs/profile']);
   }

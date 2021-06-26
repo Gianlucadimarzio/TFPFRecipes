@@ -37,15 +37,13 @@ export class RecensioniPage implements OnInit {
   routerRicerca(){
     this.router.navigate(['tabs/tabs/recipes']);
   }
-  routerCarrello(){
-    this.router.navigate(['tabs/tabs/cart']);
-  }
   routerProfilo(){
     this.router.navigate(['tabs/tabs/profile']);
   }
   routerAddRicetta(){
     this.router.navigate(['tabs/tabs/addRicetta']);
   }
+
   doRefresh(event) {
     setTimeout( () => {
       this.recensioni = this.recensioneService.getRecensioniByUtente( this.utente );
