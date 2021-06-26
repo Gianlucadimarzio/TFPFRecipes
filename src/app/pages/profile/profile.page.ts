@@ -26,8 +26,12 @@ export class ProfilePage implements OnInit {
   ricettario(){
     this.router.navigate(['ricettario']);
   }
-  test(){
-    alert("we");
+  ricettePersonali(){
+    this.router.navigate(['ricette-pubblicate']);
   }
+  logout(){
+    this.router.navigate(['login']);
+  }
+
 
 }

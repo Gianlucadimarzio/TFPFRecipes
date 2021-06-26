@@ -1,18 +1,16 @@
-<ion-header >
+<ion-header>
   <ion-toolbar>
-      <img src="assets/images/logo_h.png" class="img-h">
+    <ion-title>ricettePubblicate</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <ion-item *ngFor="let recensione of recensioni">
-    <img style="cursor: pointer" (click)=showRicetta(recensione.idRicetta) slot="start" height=75 width=75 src="{{recensione.immagine}}" alt="immagine ricetta">
+  <ion-item *ngFor="let ricetta of ricette">
+    <img style="cursor: pointer" (click)=showRicetta(ricetta.id) slot="start" height=75 width=75 src="{{ricetta.immagine}}" alt="immagine ricetta">
     <ion-item lines=none>
-      {{recensione.titolo}}
-      <br>
-      {{recensione.testo}}
+      {{ricetta.nome}}
     </ion-item>
-    <ion-button slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event) >DELETE</ion-button>
+    <ion-button slot="end" (click)="deleteRicetta(ricetta.id)" (click)= doRefresh($event)>DELETE</ion-button>
   </ion-item>
 </ion-content>
 
