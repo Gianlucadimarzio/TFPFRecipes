@@ -26,4 +26,21 @@ export class RicercaRicetteCategoriaPage implements OnInit {
     this.router.navigate([`ricetta/${id}`]);
   }
 
+  routerHome(){
+    this.router.navigate(['tabs/tabs/home']);
+  }
+  routerRicerca(){
+    this.router.navigate(['tabs/tabs/recipes']);
+  }
+  routerCarrello(){
+    this.router.navigate(['tabs/tabs/cart']);
+  }
+  routerProfilo(){
+    this.router.navigate(['tabs/tabs/profile']);
+  }
+  routerAddRicetta(){
+    this.router.navigate(['tabs/tabs/addRicetta']);
+  }
+
+
 }

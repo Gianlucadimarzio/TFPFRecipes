@@ -10,7 +10,7 @@
       <div class="top">
         <img src="../../assets/images/header.png">
       </div>
-      <h4><ion-icon name="restaurant"></ion-icon> Inserisci una ricetta</h4>
+      <h4><ion-icon name="restaurant"></ion-icon> Inserisci una ricetta <ion-icon name="restaurant"></ion-icon></h4>
     </ion-card-header>
     <ion-card-content>
       <form #f="ngForm" (ngSubmit)="addRicetta(f)" (ngSubmit)="f.reset()" >
@@ -61,13 +61,13 @@
         </ion-row>
         <ion-item *ngFor="let item of items">
           <ion-select  name="{{item.value}}" ngModel okText="Aggiungi" cancelText="Annulla" required>
-            <ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
+            <ion-label>Scegli ingrediente </ion-label><ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
           </ion-select>
           <ion-input name="{{item.valueDose}}" ngModel type="text" placeholder="Dose" required></ion-input>
 
         </ion-item>
 
-        <ion-button expand="block" [disabled]="!f.valid" type="submit">Inserisci ricetta</ion-button>
+        <ion-button expand="block" mode="ios" [disabled]="!f.valid" type="submit">Inserisci ricetta</ion-button>
       </form>
 
       <div class="bottom">

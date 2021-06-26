@@ -1,13 +1,40 @@
 <ion-header>
-
+  <ion-toolbar>
+    <img src="assets/images/logo_h.png" class="img-h">
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+  <ion-searchbar mode="ios" placeholder="Cerca..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
 
-  <ion-list>
-    <ion-item *ngFor="let ricetta of ricette | filter:filterTerm">
-      <ion-label style="cursor: pointer;" (click)="btnClicked(ricetta.id)">{{ricetta.nome}}</ion-label>
+  <ion-card mode="ios" class="bg-load" *ngFor="let ricetta of ricette | filter:filterTerm">
+    <ion-item (click)="btnClicked(ricetta.id)" style="cursor: pointer;">
+      <ion-avatar slot="start">
+        <img src="{{ricetta.immagine}}" alt="Immagine ricetta">
+      </ion-avatar>
+      <ion-label style="color: white;" >{{ricetta.nome}} </ion-label><ion-icon slot="end" class="text-white" name="chevron-forward"></ion-icon>
     </ion-item>
-  </ion-list>
+  </ion-card>
 </ion-content>
+
+<ion-tab-bar slot="bottom" mode="md">
+  <ion-tab-button tab="home" (click)="routerHome()" >
+    <ion-icon name="home"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="recipes" (click)="routerRicerca()">
+    <ion-icon name="restaurant-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="addRicetta" (click)="routerAddRicetta()">
+    <ion-icon name="add-circle-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="cart" (click)="routerCarrello()">
+    <ion-icon name="receipt-outline"></ion-icon>
+  </ion-tab-button>
+
+  <ion-tab-button tab="profile" (click)="routerProfilo()">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-tab-button>
+</ion-tab-bar>
