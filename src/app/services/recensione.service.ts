@@ -38,6 +38,7 @@ export class RecensioneService {
     addRecensione( form: NgForm, idRicetta: string, utente: Utente ){
       var token = this.tokenService.generateToken();
       this.database.collection('recensione').doc(`${token}`).set({
+        id: token,
         utente: utente.getId(),
         ricetta: idRicetta,
         titolo: form.value['titolo'],
@@ -53,7 +54,7 @@ export class RecensioneService {
             this.database.collection('ricetta').get().subscribe( resultRicette => {
               resultRicette.forEach( rowRicetta => {
                 if( rowRicetta.data()['id'] == rowRecensione.data()['ricetta'] ){
-                  lista.push( { titolo: rowRecensione.data()['titolo'], testo: rowRecensione.data()['descrizione'], id: rowRecensione.data()['ricetta'], immagine: rowRicetta.data()['immagine'] } );
+                  lista.push( { id: rowRecensione.data()['id'], titolo: rowRecensione.data()['titolo'], testo: rowRecensione.data()['descrizione'], idRicetta: rowRecensione.data()['ricetta'], immagine: rowRicetta.data()['immagine'] } );
                 }
               });
             });
@@ -61,6 +62,10 @@ export class RecensioneService {
         });
       });
       return lista;
+    }
+
+    deleteRecensione( idRecensione: string ){
+      this.database.collection('recensione').doc(`${idRecensione}`).delete();
     }
 
 

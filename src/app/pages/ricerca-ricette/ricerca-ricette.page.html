@@ -4,7 +4,7 @@
       <ion-col size="3">
         <ion-thumbnail class="ion-margin-start">
           <img src="assets/images/logo.png">
-        </ion-thumbnail>     
+        </ion-thumbnail>
       </ion-col>
       <ion-col size="9">
         <ion-searchbar></ion-searchbar>
@@ -15,13 +15,13 @@
 
 <ion-content>
   <ion-list *ngFor="let categoria of categorie;">
-    <ion-item lines="full">
+    <ion-item style="cursor: pointer;" lines="full" (click)="btnClicked(categoria.nome)">
       <ion-avatar slot="start">
         <img src="{{categoria.immagine}}">
       </ion-avatar>
-      <a class="a_categoria" (click)="btnClicked(categoria.id)"><h4>{{categoria.nome}}</h4></a>
+      <a class="a_categoria"><h4>{{categoria.nome}}</h4></a>
     </ion-item>
-    
+
   </ion-list>
-  
+
 </ion-content>

@@ -60,6 +60,14 @@ const routes: Routes = [
     path: 'ricettario',
     loadChildren: () => import('./pages/ricettario/ricettario.module').then( m => m.RicettarioPageModule)
   },
+  {
+    path: 'ricette-pubblicate',
+    loadChildren: () => import('./pages/ricette-pubblicate/ricette-pubblicate.module').then( m => m.RicettePubblicatePageModule)
+  },
+  {
+    path: 'ricerca-ricette-categoria/:xyz',
+    loadChildren: () => import('./pages/ricerca-ricette-categoria/ricerca-ricette-categoria.module').then( m => m.RicercaRicetteCategoriaPageModule)
+  },
 
 
 ];

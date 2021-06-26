@@ -121,6 +121,7 @@ export class RicettaService {
       for( let i = 0; i < indice; i++ ){
         var tokenIngrediente = this.tokenService.generateToken();
         this.database.collection('dose').doc(`${tokenIngrediente}`).set({
+            id: tokenIngrediente,
             ricetta: token,
             quantita: form.value[i + 1000000],
             ingrediente: form.value[i]
@@ -137,6 +138,48 @@ export class RicettaService {
           }
         });
       });
+    }
+
+    getRicetteByUtente( utente: Utente ){
+      var lista = new Array();
+      this.database.collection('ricetta').get().subscribe( resultRicetta =>{
+        resultRicetta.forEach( rowRicetta =>{
+          if( rowRicetta.data()['utente'] == utente.getId() ){
+            lista.push( { nome: rowRicetta.data()['nome'], id: rowRicetta.data()['id'], immagine: rowRicetta.data()['immagine'] } );
+          }
+         });
+      });
+      return lista;
+    }
+
+    deleteRicetta( idRicetta: string ){
+      this.database.collection('ricetta').doc(`${idRicetta}`).delete();
+      this.database.collection('dose').get().subscribe( resultDose =>{
+        resultDose.forEach( rowDose =>{
+          if( rowDose.data()['ricetta'] == idRicetta ){
+            this.database.collection('dose').doc(`${rowDose.data()['id']}`).delete();
+          }
+        });
+      });
+      this.database.collection('recensione').get().subscribe( resultRecensione =>{
+        resultRecensione.forEach( rowRecensione =>{
+          if( rowRecensione.data()['ricetta'] == idRicetta ){
+            this.database.collection('recensione').doc(`${rowRecensione.data()['id']}`).delete();
+          }
+        });
+      });
+    }
+
+    getRicetteByCategoria( idCategoria: string ){
+      var lista = new Array();
+      this.database.collection('ricetta').get().subscribe( resultRicetta =>{
+        resultRicetta.forEach( rowRicetta =>{
+          if( rowRicetta.data()['categoria'] == idCategoria ){
+            lista.push( { id: rowRicetta.data()['id'], nome: rowRicetta.data()['nome'] } );
+          }
+        });
+      });
+      return lista;
     }
 
 

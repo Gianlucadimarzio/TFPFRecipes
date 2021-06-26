@@ -15,7 +15,7 @@ export class CategoriaService {
       var lista = new Array();
        this.database.collection('categoria').get().subscribe( resultCategoria =>{
          resultCategoria.forEach( rowCategoria => {
-           lista.push( { nome: rowCategoria.data()['nome'] } );
+           lista.push( { immagine: rowCategoria.data()['immagine'], nome: rowCategoria.data()['nome'] } );
          });
        });
        return lista;
