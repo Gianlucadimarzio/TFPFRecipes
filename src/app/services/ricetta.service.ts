@@ -42,7 +42,7 @@ export class RicettaService {
             resultRicetta.forEach( rowRicetta => {
             if( rowRicetta.data()['id'] == id){
                 ricetta = new Ricetta( rowRicetta.data()['id'], rowRicetta.data()['nome'],rowRicetta.data()['descrizione'],rowRicetta.data()['difficolta'],rowRicetta.data()['immagine'],rowRicetta.data()['procedimento'],rowRicetta.data()['tempo'], rowRicetta.data()['categoria'] );
-                lista.push( { nome: ricetta.getNome(), procedimento: ricetta.getProcedimento(), immagine: ricetta.getImmagine(), descrizione: ricetta.getDescrizione(), difficolta : ricetta.getDifficolta(), tempo: ricetta.getTempo(), categoria: ricetta.getCategoria() } );
+                lista.push( { nome: ricetta.getNome(), procedimento: ricetta.getProcedimento(), immagine: ricetta.getImmagine(), difficolta : ricetta.getDifficolta(), tempo: ricetta.getTempo(), categoria: ricetta.getCategoria() } );
             }
           });
         });
@@ -101,7 +101,6 @@ export class RicettaService {
       console.log( form.value );
       var token = this.tokenService.generateToken();
       var categoria = form.value['categoria'];
-      var descrizione = form.value['descrizione'];
       var difficolta = form.value['difficolta'];
       var immagine = form.value['immagine'];
       var nome = form.value['nome'];
@@ -113,7 +112,6 @@ export class RicettaService {
           immagine: immagine,
           nome: nome,
           categoria: categoria,
-          descrizione: descrizione,
           procedimento: procedimento,
           tempo: durata,
           difficolta: difficolta
