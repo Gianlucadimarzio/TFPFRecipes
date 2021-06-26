@@ -44,7 +44,7 @@
 
             <div class="bottom-section" style="margin-top: 2em;">
               <ion-button type="submit" [disabled]="!ValidationFormUSer.valid">Registrati</ion-button>
-              <span>Possiedi già un account? <a href="http://localhost:8100/login"><b>Accedi quì</b></a></span>
+              <span>Possiedi già un account? <a style="cursor: pointer;" (click)="login()"><b>Accedi quì</b></a></span>
             </div>
           </ion-card-content>
         </form>

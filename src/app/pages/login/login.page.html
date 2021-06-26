@@ -40,7 +40,7 @@
 
               <div class="bottom-section" style="margin-top: 2em;">
                   <ion-button type="submit" [disabled]="!validationFormUser.valid">Accedi</ion-button>
-                  <span>Non sei ancora registrato? <a href="http://localhost:8100/signup"><b>Clicca quì</b> </a></span>
+                  <span>Non sei ancora registrato? <a style="cursor: pointer;" (click)="signup()"><b>Clicca quì</b> </a></span>
               </div>
             </form>
 

@@ -120,4 +120,8 @@ export class SignupPage implements OnInit {
     })
      load.present();
    }
+
+   login(){
+    this.route.navigate(['login']);
+  }
 }
