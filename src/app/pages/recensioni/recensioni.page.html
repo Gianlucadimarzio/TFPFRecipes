@@ -17,12 +17,13 @@
         <ion-avatar>
           <img style="cursor: pointer" (click)=showRicetta(recensione.id) src="{{recensione.immagine}}" alt="immagine ricetta">
         </ion-avatar>
+        <a class="a-trash" slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event)><ion-icon name="close-circle"></ion-icon></a>
+
         <ion-label style="margin-left: 5px">
           <h3>{{recensione.titolo}}</h3>
           <p>{{recensione.testo}}</p>
-          <a class="a-trash" slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event)><ion-icon name="trash"></ion-icon></a>
-
         </ion-label>
+
       </ion-item>
       <div class="bottom">
         <img src="../../assets/images/headerFooter.png">
