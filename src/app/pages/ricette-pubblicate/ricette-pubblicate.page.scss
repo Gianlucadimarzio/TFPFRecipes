@@ -1,0 +1,43 @@
+ion-content {
+    background-color: whitesmoke;
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+h4{
+    text-align: center;
+    color: #b00011;
+}
+
+ion-card-header{
+    width: 100%;
+}
+
+.top{
+
+    img{
+        width: inherit;
+        object-fit: cover;
+    }
+}
+
+.bottom{
+    margin-bottom: 0;
+    img{
+        width: inherit;
+        object-fit: cover;
+    }
+}
+
+.a-trash{
+    background-color: transparent;
+    color: #b00011;
+    cursor: pointer;
+    ion-icon{
+        font-size: 22px;
+    }
+}

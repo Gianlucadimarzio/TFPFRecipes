@@ -1,27 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-row>
-      <ion-col size="3">
-        <ion-thumbnail class="ion-margin-start">
-          <img src="assets/images/logo.png">
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col size="9">
-        <ion-searchbar></ion-searchbar>
-      </ion-col>
-    </ion-row>
+    <img src="assets/images/logo_h.png" class="img-h">
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <ion-list *ngFor="let categoria of categorie;">
-    <ion-item style="cursor: pointer;" lines="full" (click)="btnClicked(categoria.nome)">
+  <ion-card mode="ios" *ngFor="let categoria of categorie;" class="bg-load">
+    <ion-item style="cursor: pointer;" lines="none" (click)="btnClicked(categoria.nome)">
       <ion-avatar slot="start">
         <img src="{{categoria.immagine}}">
       </ion-avatar>
-      <a class="a_categoria"><h4>{{categoria.nome}}</h4></a>
+      <ion-label style="color: white; text-transform: capitalize;" class="size-h4">{{categoria.nome}}</ion-label><ion-icon slot="end" class="text-white" name="chevron-forward"></ion-icon>
     </ion-item>
-
-  </ion-list>
+  </ion-card>
 
 </ion-content>

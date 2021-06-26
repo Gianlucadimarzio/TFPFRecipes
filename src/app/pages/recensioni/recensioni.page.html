@@ -5,15 +5,34 @@
 </ion-header>
 
 <ion-content >
-  <ion-item *ngFor="let recensione of recensioni">
-    <img style="cursor: pointer" (click)=showRicetta(recensione.idRicetta) slot="start" height=75 width=75 src="{{recensione.immagine}}" alt="immagine ricetta">
-    <ion-item lines=none>
-      {{recensione.titolo}}
-      <br>
-      {{recensione.testo}}
-    </ion-item>
-    <ion-button slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event) >DELETE</ion-button>
-  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <div class="top">
+        <img src="../../assets/images/header.png">
+      </div>
+      <h4><ion-icon name="restaurant"></ion-icon> Le tue recensioni <ion-icon name="restaurant"></ion-icon></h4>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item style="margin-bottom: 10px;" lines="none" *ngFor="let recensione of recensioni">
+        <ion-avatar>
+          <img style="cursor: pointer" (click)=showRicetta(recensione.id) src="{{recensione.immagine}}" alt="immagine ricetta">
+        </ion-avatar>
+        <ion-label style="margin-left: 5px">
+          <h3>{{recensione.titolo}}</h3>
+          <p>{{recensione.testo}}</p>
+          <a class="a-trash" slot="end" (click)="deleteFromRecensione(recensione.id)" (click)= doRefresh($event)><ion-icon name="trash"></ion-icon></a>
+
+        </ion-label>
+      </ion-item>
+      <div class="bottom">
+        <img src="../../assets/images/headerFooter.png">
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
 </ion-content>
 
 <ion-tab-bar slot="bottom" mode="md">

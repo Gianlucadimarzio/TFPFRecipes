@@ -175,7 +175,7 @@ export class RicettaService {
       this.database.collection('ricetta').get().subscribe( resultRicetta =>{
         resultRicetta.forEach( rowRicetta =>{
           if( rowRicetta.data()['categoria'] == idCategoria ){
-            lista.push( { id: rowRicetta.data()['id'], nome: rowRicetta.data()['nome'] } );
+            lista.push( { id: rowRicetta.data()['id'], nome: rowRicetta.data()['nome'], immagine: rowRicetta.data()['immagine'] } );
           }
         });
       });
