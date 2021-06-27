@@ -1,3 +1,5 @@
+import { Utente } from './utente.model';
+import { Ingrediente } from './ingrediente.model';
 
 export class Ricetta {
 
@@ -8,6 +10,9 @@ export class Ricetta {
     procedimento: string;
     tempo: number;
     categoria: string;
+
+    utente: Utente;
+    ingredienti: Array<Ingrediente>;
 
     constructor( i:string, n:string, di:string, im:string, p:string, t:number, c:string ){
         this.id = i;
