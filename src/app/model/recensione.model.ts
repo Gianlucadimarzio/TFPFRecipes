@@ -1,6 +1,6 @@
 import { Utente } from './utente.model';
 
-export Class Recensione(){
+export class Recensione{
 
   id: string;
   utente: Utente;
