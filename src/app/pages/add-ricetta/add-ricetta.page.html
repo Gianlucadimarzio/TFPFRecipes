@@ -25,7 +25,7 @@
 
         <ion-item>
           <ion-label><ion-card-title mode="md">Categoria</ion-card-title></ion-label>
-          <ion-select  name="categoria" ngModel okText="Aggiungi" cancelText="Annulla" required>
+          <ion-select  mode="md" name="categoria" ngModel okText="Aggiungi" cancelText="Annulla" required>
             <ion-select-option *ngFor="let categoria of categorie" value="{{categoria.nome}}">{{categoria.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -40,7 +40,7 @@
 
         <ion-item>
           <ion-label><ion-card-title mode="md">Difficoltà</ion-card-title></ion-label>
-          <ion-select  name="difficolta" ngModel okText="Conferma" cancelText="Annulla" required>
+          <ion-select mode="md" name="difficolta" ngModel okText="Conferma" cancelText="Annulla" required>
 
             <ion-select-option value="1">Facile</ion-select-option>
             <ion-select-option value="2">Media</ion-select-option>
@@ -60,11 +60,10 @@
           </ion-col>
         </ion-row>
         <ion-item *ngFor="let item of items">
-          <ion-select  name="{{item.value}}" ngModel okText="Aggiungi" cancelText="Annulla" required>
+          <ion-select mode="md" style="color: #580303;"  name="{{item.value}}" ngModel okText="Aggiungi" cancelText="Annulla" required>
             <ion-label>Scegli ingrediente </ion-label><ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
           </ion-select>
           <ion-input name="{{item.valueDose}}" ngModel type="text" placeholder="Dose" required></ion-input>
-
         </ion-item>
 
         <ion-button expand="block" mode="ios" [disabled]="!f.valid" type="submit">Inserisci ricetta</ion-button>
