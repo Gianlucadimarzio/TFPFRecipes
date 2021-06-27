@@ -43,6 +43,12 @@ export class AddRicettaPage implements OnInit {
 
   addRicetta( form: NgForm ){
     this.ricettaService.addRicetta( form, this.indice, this.utente );
+
+    this.items = new Array();
+    this.indice = 0;
+    this.items.push( { value: this.indice, valueDose: this.indice + 1000000 } );
+    this.indice += 1;
+    
     this.router.navigate(['tabs/tabs/home']);
   }
   addIngrediente(){
