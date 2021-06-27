@@ -61,7 +61,9 @@
         </ion-row>
         <ion-item *ngFor="let item of items">
           <ion-select mode="md" style="color: #580303;"  name="{{item.value}}" ngModel okText="Aggiungi" cancelText="Annulla" required>
-            <ion-label>Scegli ingrediente </ion-label><ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
+            <ion-label>Scegli ingrediente </ion-label>
+            <ion-searchbar mode="ios" placeholder="Cerca..." animated="true"></ion-searchbar>
+            <ion-select-option *ngFor="let ingrediente of ingredienti" value="{{ingrediente.id}}">{{ingrediente.nome}}</ion-select-option>
           </ion-select>
           <ion-input name="{{item.valueDose}}" ngModel type="text" placeholder="Dose" required></ion-input>
         </ion-item>

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Utente } from "../model/utente.model";
 import { TokenService } from "./token.service";
 
@@ -123,6 +123,9 @@ export class IngredienteService {
       });
       return lista;
     }
+
+
+
 
 
 
